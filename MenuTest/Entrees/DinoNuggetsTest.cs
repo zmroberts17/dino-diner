@@ -79,7 +79,8 @@ namespace MenuTest.Entrees
         {
             DinoNuggets dn = new DinoNuggets();
             dn.AddNugget();
-            Assert.Equal<uint>( dn.Calories, 59*7);
+
+            Assert.Equal<uint>(dn.Calories, 59*7);
             dn.AddNugget();
             Assert.Equal<uint>(dn.Calories, 59*8);
             dn.AddNugget();
