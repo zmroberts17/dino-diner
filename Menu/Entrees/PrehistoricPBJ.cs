@@ -10,7 +10,7 @@ namespace DinoDiner.Menu.Entrees
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class PrehistoricPBJ : Entre
+    public class PrehistoricPBJ : Entree
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
