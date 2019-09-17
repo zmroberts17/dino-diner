@@ -11,20 +11,17 @@ namespace DinoDiner.Menu.Entrees
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class DinoNuggets
+    public class DinoNuggets : Entre
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
         /// </summary>
         private uint nuggets = 6;
 
-        public double Price { get; set; }
-        public uint Calories { get; set; }
-
         /// <summary>
         /// List of ingredients within the menu item
         /// </summary>
-        public List<string> Ingredients
+        public override List<string> Ingredients
         {
             get
             {
@@ -42,8 +39,8 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         public DinoNuggets()
         {
-            this.Price = 4.25;
-            this.Calories = 59 * 6;
+            Price = 4.25;
+            Calories = 59 * 6;
         }
 
         /// <summary>

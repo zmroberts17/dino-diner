@@ -10,7 +10,7 @@ namespace DinoDiner.Menu.Entrees
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class VelociWrap
+    public class VelociWrap : Entre
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -37,13 +37,10 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         private bool ParmesanCheese = true;
 
-        public double Price { get; set; }
-        public uint Calories { get; set; }
-
         /// <summary>
         /// List of ingredients within the menu item
         /// </summary>
-        public List<string> Ingredients
+        public override List<string> Ingredients
         {
             get
             {
@@ -62,8 +59,8 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         public VelociWrap()
         {
-            this.Price = 6.86;
-            this.Calories = 356;
+            Price = 6.86;
+            Calories = 356;
         }
 
         /// <summary>

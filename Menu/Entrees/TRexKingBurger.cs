@@ -11,7 +11,7 @@ namespace DinoDiner.Menu.Entrees
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class TRexKingBurger
+    public class TRexKingBurger : Entre
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -58,13 +58,10 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         private bool mayo = true;
 
-        public double Price { get; set; }
-        public uint Calories { get; set; }
-
         /// <summary>
         /// List of ingredients within the menu item
         /// </summary>
-        public List<string> Ingredients
+        public override List<string> Ingredients
         {
             get
             {
@@ -90,8 +87,8 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         public TRexKingBurger()
         {
-            this.Price = 8.45;
-            this.Calories = 728;
+            Price = 8.45;
+            Calories = 728;
         }
 
         /// <summary>

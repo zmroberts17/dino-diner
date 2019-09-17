@@ -11,7 +11,7 @@ namespace DinoDiner.Menu.Entrees
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class Brontowurst
+    public class Brontowurst : Entre
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -33,13 +33,10 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         private bool Onions = true;
 
-        public double Price { get; set; }
-        public uint Calories { get; set; }
-
         /// <summary>
         /// List of ingredients within the menu item
         /// </summary>
-        public List<string> Ingredients {
+        public override List<string> Ingredients {
             get
             {
                 List<string> ingredients = new List<string>();
@@ -56,8 +53,8 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         public Brontowurst()
         {
-            this.Price = 5.36;
-            this.Calories = 498;
+            Price = 5.36;
+            Calories = 498;
         }
 
         /// <summary>

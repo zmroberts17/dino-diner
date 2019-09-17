@@ -1,23 +1,10 @@
-﻿/*  Side.cs
- *  Author: Nathan Bean
- *  Modified by: Zane Roberts
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinoDiner.Menu.Sides
+namespace DinoDiner.Menu.Entrees
 {
-
-    public enum Size
-    {
-        Small,
-        Medium, 
-        Large
-    }
-
-    public abstract class Side
+    public abstract class Entre
     {
         /// <summary>
         /// Gets and sets the price
@@ -30,14 +17,8 @@ namespace DinoDiner.Menu.Sides
         public uint Calories { get; set; }
 
         /// <summary>
-        /// Gets the ingredients list
+        /// Gets the ingredients
         /// </summary>
         public abstract List<string> Ingredients { get; }
-
-        /// <summary>
-        /// Gets or sets the size
-        /// </summary>
-        public abstract Size Size { get; set; }
-
     }
 }

@@ -11,7 +11,7 @@ namespace DinoDiner.Menu.Entrees
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class SteakosaurusBurger
+    public class SteakosaurusBurger : Entre
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -38,13 +38,10 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         private bool Mustard = true;
 
-        public double Price { get; set; }
-        public uint Calories { get; set; }
-
         /// <summary>
         /// List of ingredients within the menu item
         /// </summary>
-        public List<string> Ingredients
+        public override List<string> Ingredients
         {
             get
             {
@@ -63,8 +60,8 @@ namespace DinoDiner.Menu.Entrees
         /// </summary>
         public SteakosaurusBurger()
         {
-            this.Price = 5.15;
-            this.Calories = 621;
+            Price = 5.15;
+            Calories = 621;
         }
 
         /// <summary>
