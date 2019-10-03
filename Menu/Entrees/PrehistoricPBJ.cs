@@ -5,12 +5,12 @@
 
 using System.Collections.Generic;
 
-namespace DinoDiner.Menu.Entrees
+namespace DinoDiner.Menu
 {
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class PrehistoricPBJ : Entree
+    public class PrehistoricPBJ : Entree, IMenuItem
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -59,6 +59,15 @@ namespace DinoDiner.Menu.Entrees
         public void HoldJelly()
         {
             this.jelly = false;
+        }
+
+        /// <summary>
+        /// This method returns the string that refers to the menu item.
+        /// </summary>
+        /// <returns>The string that refers to the menu item</returns>
+        public override string ToString()
+        {
+            return "Prehistoric PB&J";
         }
     }
 }

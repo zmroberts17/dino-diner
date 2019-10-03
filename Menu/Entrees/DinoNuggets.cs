@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinoDiner.Menu.Entrees
+namespace DinoDiner.Menu
 {
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class DinoNuggets : Entree
+    public class DinoNuggets : Entree, IMenuItem
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -51,6 +51,15 @@ namespace DinoDiner.Menu.Entrees
             this.Price += .25;
             this.nuggets += 1;
             this.Calories += 59;
+        }
+
+        /// <summary>
+        /// This method returns the string that refers to the menu item.
+        /// </summary>
+        /// <returns>The string that refers to the menu item</returns>
+        public override string ToString()
+        {
+            return "Dino-Nuggets";
         }
     }
 }

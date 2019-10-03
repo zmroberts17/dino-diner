@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinoDiner.Menu.Drinks
+namespace DinoDiner.Menu
 {
     /// <summary>
     /// This is a drink on the Menu Item
     /// </summary>
-    public class Sodasaurus : Drink
+    public class Sodasaurus : Drink, IMenuItem
     {
         /// <summary>
         /// This is the size of the drink
@@ -75,6 +75,15 @@ namespace DinoDiner.Menu.Drinks
                 ingredients.Add("Cane Sugar");
                 return ingredients;
             }
+        }
+
+        /// <summary>
+        /// This method returns the string that refers to the menu item.
+        /// </summary>
+        /// <returns>The string that refers to the menu item</returns>
+        public override string ToString()
+        {
+            return $"{size} {Flavor} Sodasaurus";
         }
     }
 }

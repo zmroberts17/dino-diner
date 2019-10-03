@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinoDiner.Menu.Sides
+namespace DinoDiner.Menu
 {
     /// <summary>
     /// This class contains information for this specific menu item
     /// </summary>
-    public class MezzorellaSticks : Side
+    public class MezzorellaSticks : Side, IMenuItem
     {
         /// <summary>
         /// This is the size of the side
@@ -70,6 +70,15 @@ namespace DinoDiner.Menu.Sides
                 ingredients.Add("Vegetable Oil");
                 return ingredients;
             }
+        }
+
+        /// <summary>
+        /// This method returns the string that refers to the menu item.
+        /// </summary>
+        /// <returns>The string that refers to the menu item</returns>
+        public override string ToString()
+        {
+            return $"{size} Mezzorella Sticks";
         }
     }
 }

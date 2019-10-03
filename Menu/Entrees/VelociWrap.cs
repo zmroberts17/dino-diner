@@ -5,12 +5,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinoDiner.Menu.Entrees
+namespace DinoDiner.Menu
 {
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class VelociWrap : Entree
+    public class VelociWrap : Entree, IMenuItem
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -85,6 +85,15 @@ namespace DinoDiner.Menu.Entrees
         public void HoldCheese()
         {
             this.ParmesanCheese = false;
+        }
+
+        /// <summary>
+        /// This method returns the string that refers to the menu item.
+        /// </summary>
+        /// <returns>The string that refers to the menu item</returns>
+        public override string ToString()
+        {
+            return "Veloci-Wrap";
         }
     }
 }

@@ -6,22 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DinoDiner.Menu.Drinks
+namespace DinoDiner.Menu
 {
-    /// <summary>
-    /// Enum for the size of the drink
-    /// </summary>
-    public enum Size
-    {
-        Small,
-        Medium,
-        Large
-    }
-
     /// <summary>
     /// Super class for the Drinks of the Menu
     /// </summary>
-    public abstract class Drink
+    public abstract class Drink : IMenuItem
     {
         public double Price { get; set; }
 

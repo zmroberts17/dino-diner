@@ -5,13 +5,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DinoDiner.Menu;
 
-namespace DinoDiner.Menu.Sides
+namespace DinoDiner.Menu
 {
     /// <summary>
     /// This class contains information for this specific menu item
     /// </summary>
-    public class MeteorMacAndCheese : Side
+    public class MeteorMacAndCheese : Side, IMenuItem
     {
         /// <summary>
         /// This is the size of the side
@@ -70,6 +71,15 @@ namespace DinoDiner.Menu.Sides
                 ingredients.Add("Pork Sausage");
                 return ingredients;
             }
+        }
+
+        /// <summary>
+        /// This method returns the string that refers to the menu item.
+        /// </summary>
+        /// <returns>The string that refers to the menu item</returns>
+        public override string ToString()
+        {
+            return $"{size} Meteor Mac and Cheese";
         }
     }
 }
