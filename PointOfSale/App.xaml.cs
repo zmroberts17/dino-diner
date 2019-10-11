@@ -13,5 +13,9 @@ namespace PointOfSale
     /// </summary>
     public partial class App : Application
     {
+        public void MouseHover(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

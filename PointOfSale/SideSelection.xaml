@@ -1,0 +1,33 @@
+﻿<Page x:Class="PointOfSale.SideSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PointOfSale"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SideSelection">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Button Name="fryButton" Click="SelectSide" Style="{StaticResource MyButton}" Background="LightGreen" FontSize="24" Grid.Row="1" Grid.Column="0" Content="Fryceritops" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="70" Margin="0,1,0,0"/>
+        <Button Name="macButton" Click="SelectSide" Style="{StaticResource MyButton}" Background="Gold" FontSize="24" Grid.Row="2" Grid.Column="0" Content="Meteor Mac &#x0a;  &amp; Cheese" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="70"/>
+        <Button Name="triButton" Click="SelectSide" Style="{StaticResource MyButton}" Background="Gold" FontSize="24" Grid.Row="3" Content="Triceritots" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="70"/>
+        <Button Name="sticksButton" Click="SelectSide" Style="{StaticResource MyButton}" Background="Gold" FontSize="24" Grid.Row="4" Content="Mezzorella &#x0a;     Sticks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="70"/>
+        <RadioButton Name="smallButton" IsChecked="True" FontSize="28" Content="Small" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="161" Grid.Column="1" Grid.Row="1" Margin="62.333,1,0,0"/>
+        <RadioButton Name="mediumButton" FontSize="28" Content="Medium" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="194" Grid.Row="2" Grid.Column="1" Margin="62.333,0,0,0"/>
+        <RadioButton Name="largeButton" FontSize="28" Content="Large" HorizontalAlignment="Left" VerticalAlignment="Top" Height="58" Width="165" Grid.Row="3" Grid.Column="1" Margin="62.333,0,0,0"/>
+        <TextBlock Text="Add to Order" FontSize="24" HorizontalAlignment="Left" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="46" Width="153"/>
+    </Grid>
+</Page>

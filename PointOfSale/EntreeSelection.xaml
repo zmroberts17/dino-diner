@@ -1,0 +1,32 @@
+﻿<Page x:Class="PointOfSale.EntreeSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PointOfSale"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EntreeSelection">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="206*"/>
+            <ColumnDefinition Width="206*"/>
+            <ColumnDefinition Width="387*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="130*"/>
+        </Grid.RowDefinitions>
+        <Button Name="brontowurstButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="1" Grid.Column="0" Click="SelectEntree" Content="Brontowurst" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90"/>
+        <Button Name="nuggetsButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="1" Grid.Column="1" Click="SelectEntree" Content="Dino-Nuggets" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="1,0,0,0"/>
+        <Button Name="pbjButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="1" Grid.Column="2" Click="SelectEntree" Content="  Prehistoric &#x0a;      PB&amp;J" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0.333,0.333,0,0"/>
+        <Button Name="wingsButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="1" Grid.Column="0" Click="SelectEntree" Content="Pterodactyl&#x0a;    Wings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0,124.333,0,0" Grid.RowSpan="2"/>
+        <Button Name="steakButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="1" Grid.Column="1" Click="SelectEntree" Content=" Steakosaurus &#x0a;      Burger " HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="1,124.333,0,0" Grid.RowSpan="2"/>
+        <Button Name="trexButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="1" Grid.Column="2" Click="SelectEntree" Content="     T-Rex&#x0a; Kingburger" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0.333,124.333,0,0" Grid.RowSpan="2"/>
+        <Button Name="wrapButton" Style="{StaticResource MyButton}" FontSize="20" Background="Gold" Grid.Row="3" Grid.Column="0" Click="SelectEntree" Content="Veloci-Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0,24,0,0"/>
+        <TextBlock Text="Add to Order" FontSize="24" HorizontalAlignment="Left" Margin="147,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="46" Width="153"/>
+    </Grid>
+</Page>
