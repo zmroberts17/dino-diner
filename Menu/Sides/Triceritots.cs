@@ -11,7 +11,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This class contains information for this specific menu item
     /// </summary>
-    public class Triceritots : Side, IMenuItem
+    public class Triceritots : Side
     {
         /// <summary>
         /// This is the size of the side
@@ -35,14 +35,26 @@ namespace DinoDiner.Menu
                     case Size.Small:
                         Price = 0.99;
                         Calories = 352;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         break;
                     case Size.Medium:
                         Price = 1.45;
                         Calories = 410;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         break;
                     case Size.Large:
                         Price = 1.95;
                         Calories = 590;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         break;
                 }
             }
@@ -55,6 +67,18 @@ namespace DinoDiner.Menu
         {
             Calories = 352;
             Price = 0.99;
+        }
+
+        /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                return special.ToArray();
+            }
         }
 
         /// <summary>

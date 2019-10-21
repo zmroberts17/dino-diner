@@ -83,5 +83,34 @@ namespace DinoDiner.MenuTest
             mmc.Size = Size.Large;
             Assert.Equal<Size>(Size.Large, mmc.Size);
         }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            MeteorMacAndCheese mac = new MeteorMacAndCheese();
+            Assert.Empty(mac.Special);
+        }
+
+        [Theory]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Size")]
+        [InlineData("Description")]
+        public void ChangingSizeShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            MeteorMacAndCheese mac = new MeteorMacAndCheese();
+            Assert.PropertyChanged(mac, propertyName, () =>
+            {
+                mac.Size = Size.Medium;
+            });
+            Assert.PropertyChanged(mac, propertyName, () =>
+            {
+                mac.Size = Size.Large;
+            });
+            Assert.PropertyChanged(mac, propertyName, () =>
+            {
+                mac.Size = Size.Small;
+            });
+        }
     }
 }

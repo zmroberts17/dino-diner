@@ -11,7 +11,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class PterodactylWings : Entree, IMenuItem
+    public class PterodactylWings : Entree
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -44,6 +44,18 @@ namespace DinoDiner.Menu
         {
             Price = 7.21;
             Calories = 318;
+        }
+
+        /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                return special.ToArray();
+            }
         }
 
         /// <summary>

@@ -86,5 +86,43 @@ namespace DinoDiner.MenuTest
             dn.AddNugget();
             Assert.Equal<uint>(dn.Calories, 59*9);
         }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            DinoNuggets dn = new DinoNuggets();
+            Assert.Empty(dn.Special);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(16)]
+        public void ShouldHaveCorrectSpecialForExtraNuggets(int extranuggets)
+        {
+            DinoNuggets dn = new DinoNuggets();
+            for (int i = 0; i < extranuggets; i++)
+            {
+                dn.AddNugget();
+            }
+            Assert.Collection<string>(dn.Special, item =>
+            {
+                Assert.Equal($"{extranuggets} Extra Nuggets", item);
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        public void AddingNuggetsShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            DinoNuggets dn = new DinoNuggets();
+            Assert.PropertyChanged(dn, propertyName, () =>
+            {
+                dn.AddNugget();
+            });
+        }
     }
 }

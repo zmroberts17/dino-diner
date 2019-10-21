@@ -65,11 +65,29 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (!WholeWheatBun) special.Add("Hold Bun");
+                if (!Pickle) special.Add("Hold Pickle");
+                if (!Ketchup) special.Add("Hold Ketchup");
+                if (!Mustard) special.Add("Hold Mustard");
+                return special.ToArray();
+            }
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldBun()
         {
             this.WholeWheatBun = false;
+            NotifyOfPropertyChanged("Whole Wheat Bun");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -78,6 +96,8 @@ namespace DinoDiner.Menu
         public void HoldPickle()
         {
             this.Pickle = false;
+            NotifyOfPropertyChanged("Pickle");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -86,6 +106,8 @@ namespace DinoDiner.Menu
         public void HoldKetchup()
         {
             this.Ketchup = false;
+            NotifyOfPropertyChanged("Ketchup");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -94,6 +116,8 @@ namespace DinoDiner.Menu
         public void HoldMustard()
         {
             this.Mustard = false;
+            NotifyOfPropertyChanged("Mustard");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

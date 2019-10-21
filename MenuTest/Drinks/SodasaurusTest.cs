@@ -134,5 +134,67 @@ namespace DinoDiner.MenuTest
             Assert.Contains("Natural Flavors", soda.Ingredients);
             Assert.Contains("Cane Sugar", soda.Ingredients);
         }
+
+        [Fact]
+        public void ShouldHaveHoldIceSpecial()
+        {
+            Sodasaurus soda = new Sodasaurus();
+            soda.HoldIce();
+            string[] special = { "Hold Ice" };
+            Assert.Equal(soda.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            Sodasaurus soda = new Sodasaurus();
+            Assert.Empty(soda.Special);
+        }
+
+        [Theory]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Size")]
+        [InlineData("Description")]
+        public void ChangingSizeShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Sodasaurus soda = new Sodasaurus();
+            Assert.PropertyChanged(soda, propertyName, () =>
+            {
+                soda.Size = Size.Medium;
+            });
+            Assert.PropertyChanged(soda, propertyName, () =>
+            {
+                soda.Size = Size.Large;
+            });
+            Assert.PropertyChanged(soda, propertyName, () =>
+            {
+                soda.Size = Size.Small;
+            });
+        }
+
+        [Theory]
+        [InlineData("Description")]
+        [InlineData("Flavor")]
+        public void ChangeFlavorShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Sodasaurus soda = new Sodasaurus();
+            Assert.PropertyChanged(soda, propertyName, () =>
+            {
+                soda.Flavor = SodasaurusFlavor.Chocolate;
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Ice")]
+        public void HoldIceShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Sodasaurus soda = new Sodasaurus();
+            Assert.PropertyChanged(soda, propertyName, () =>
+            {
+                soda.HoldIce();
+            });
+        }
     }
 }

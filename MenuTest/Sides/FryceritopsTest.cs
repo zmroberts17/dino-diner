@@ -83,5 +83,34 @@ namespace DinoDiner.MenuTest
             ft.Size = Size.Large;
             Assert.Equal<Size>(Size.Large, ft.Size);
         }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            Fryceritops fry = new Fryceritops();
+            Assert.Empty(fry.Special);
+        }
+
+        [Theory]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Size")]
+        [InlineData("Description")]
+        public void ChangingSizeShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Fryceritops fry = new Fryceritops();
+            Assert.PropertyChanged(fry, propertyName, () =>
+            {
+                fry.Size = Size.Medium;
+            });
+            Assert.PropertyChanged(fry, propertyName, () =>
+            {
+                fry.Size = Size.Large;
+            });
+            Assert.PropertyChanged(fry, propertyName, () =>
+            {
+                fry.Size = Size.Small;
+            });
+        }
     }
 }

@@ -46,6 +46,71 @@ namespace DinoDiner.MenuTest
             pbj.HoldJelly();
             Assert.DoesNotContain<string>("Jelly", pbj.Ingredients);
         }
-    }
 
+        [Fact]
+        public void ShouldProvideCorrectDescription()
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            Assert.Equal("Prehistoric PB&J", pbj.Description);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldPeanutButterSpecial()
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            pbj.HoldPeanutButter();
+            string[] special = { "Hold Peanut Butter" };
+            Assert.Equal(pbj.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldJellySpecial()
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            pbj.HoldJelly();
+            string[] special = { "Hold Jelly" };
+            Assert.Equal(pbj.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveAllSpecials()
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            pbj.HoldPeanutButter();
+            pbj.HoldJelly();
+            string[] special = { "Hold Peanut Butter", "Hold Jelly" };
+            Assert.Equal(pbj.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            Assert.Empty(pbj.Special);
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Peanut Butter")]
+        public void HoldPeanutButterShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            Assert.PropertyChanged(pbj, propertyName, () =>
+            {
+                pbj.HoldPeanutButter();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Jelly")]
+        public void HoldJellyShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            Assert.PropertyChanged(pbj, propertyName, () =>
+            {
+                pbj.HoldJelly();
+            });
+        }
+    }
 }

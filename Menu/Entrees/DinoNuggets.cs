@@ -5,13 +5,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace DinoDiner.Menu
 {
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class DinoNuggets : Entree, IMenuItem
+    public class DinoNuggets : Entree, INotifyPropertyChanged
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -34,6 +35,19 @@ namespace DinoDiner.Menu
             }
         }
 
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (nuggets > 6)
+                {
+                    special.Add($"{nuggets - 6} Extra Nuggets");
+                }
+                return special.ToArray();
+            }
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -51,6 +65,9 @@ namespace DinoDiner.Menu
             this.Price += .25;
             this.nuggets += 1;
             this.Calories += 59;
+            NotifyOfPropertyChanged("Price");
+            NotifyOfPropertyChanged("Calories");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

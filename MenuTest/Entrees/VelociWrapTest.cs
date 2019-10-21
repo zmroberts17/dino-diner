@@ -56,5 +56,86 @@ namespace DinoDiner.MenuTest
             vw.HoldCheese();
             Assert.DoesNotContain<string>("Parmesan Cheese", vw.Ingredients);
         }
+
+        [Fact]
+        public void ShouldHaveHoldDressingSpecial()
+        {
+            VelociWrap wrap = new VelociWrap();
+            wrap.HoldDressing();
+            string[] special = { "Hold Dressing" };
+            Assert.Equal(wrap.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldLettuceSpecial()
+        {
+            VelociWrap wrap = new VelociWrap();
+            wrap.HoldLettuce();
+            string[] special = { "Hold Lettuce" };
+            Assert.Equal(wrap.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldCheeseSpecial()
+        {
+            VelociWrap wrap = new VelociWrap();
+            wrap.HoldCheese();
+            string[] special = { "Hold Cheese" };
+            Assert.Equal(wrap.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveAllSpecials()
+        {
+            VelociWrap wrap = new VelociWrap();
+            wrap.HoldDressing();
+            wrap.HoldLettuce();
+            wrap.HoldCheese();
+            string[] special = { "Hold Dressing", "Hold Lettuce", "Hold Cheese" };
+            Assert.Equal(wrap.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            VelociWrap wrap = new VelociWrap();
+            Assert.Empty(wrap.Special);
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Dressing")]
+        public void HoldDressingShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            VelociWrap wrap = new VelociWrap();
+            Assert.PropertyChanged(wrap, propertyName, () =>
+            {
+                wrap.HoldDressing();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Lettuce")]
+        public void HoldLettuceShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            VelociWrap wrap = new VelociWrap();
+            Assert.PropertyChanged(wrap, propertyName, () =>
+            {
+                wrap.HoldLettuce();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Cheese")]
+        public void HoldCheeseShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            VelociWrap wrap = new VelociWrap();
+            Assert.PropertyChanged(wrap, propertyName, () =>
+            {
+                wrap.HoldCheese();
+            });
+        }
     }
 }

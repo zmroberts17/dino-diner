@@ -133,7 +133,7 @@ namespace DinoDiner.MenuTest
         {
             Tyrannotea tea = new Tyrannotea();
             tea.AddSweet();
-            tea.RemoveLemon();
+            tea.RemoveSweet();
             Assert.Equal<uint>(8, tea.Calories);
             tea.Size = Size.Medium;
             Assert.Equal<uint>(16, tea.Calories);
@@ -153,6 +153,127 @@ namespace DinoDiner.MenuTest
             Assert.Contains("Lemon", tea.Ingredients);
             tea.AddSweet();
             Assert.Contains("Cane Sugar", tea.Ingredients);
+        }
+
+        [Fact]
+        public void ShouldHaveAddLemonSpecial()
+        {
+            Tyrannotea tea = new Tyrannotea();
+            tea.AddLemon();
+            string[] special = { "Add Lemon" };
+            Assert.Equal(tea.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldIceSpecial()
+        {
+            Tyrannotea tea = new Tyrannotea();
+            tea.HoldIce();
+            string[] special = { "Hold Ice" };
+            Assert.Equal(tea.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveAllSpecials()
+        {
+            Tyrannotea tea = new Tyrannotea();
+            tea.AddLemon();
+            tea.HoldIce();
+            string[] special = { "Add Lemon", "Hold Ice" };
+            Assert.Equal(tea.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.Empty(tea.Special);
+        }
+
+        [Theory]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Size")]
+        [InlineData("Description")]
+        public void ChangingSizeShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.Size = Size.Medium;
+            });
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.Size = Size.Large;
+            });
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.Size = Size.Small;
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Lemon")]
+        public void AddLemonShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.AddLemon();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Lemon")]
+        public void RemoveLemonShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.RemoveLemon();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Ice")]
+        public void HoldIceShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.HoldIce();
+            });
+        }
+
+        [Theory]
+        [InlineData("Sweet")]
+        [InlineData("Calories")]
+        [InlineData("Special")]
+        [InlineData("Description")]
+        public void AddSweetShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.AddSweet();
+            });
+        }
+
+        [Theory]
+        [InlineData("Sweet")]
+        [InlineData("Calories")]
+        [InlineData("Special")]
+        [InlineData("Description")]
+        public void RemoveSweetShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Tyrannotea tea = new Tyrannotea();
+            Assert.PropertyChanged(tea, propertyName, () =>
+            {
+                tea.RemoveSweet();
+            });
         }
     }
 }

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace DinoDiner.Menu
@@ -11,7 +12,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// Super class for the Drinks of the Menu
     /// </summary>
-    public abstract class Drink : IMenuItem
+    public abstract class Drink : IMenuItem, IOrderItem, INotifyPropertyChanged
     {
         public double Price { get; set; }
 
@@ -21,6 +22,24 @@ namespace DinoDiner.Menu
 
         public abstract Size Size { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// The method that is called when a property is changed.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that was changed</param>
+        protected void NotifyOfPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public string Description
+        {
+            get { return this.ToString(); }
+        }
+
+        public abstract string[] Special { get; }
+
         public bool Ice = true;
 
         /// <summary>
@@ -29,6 +48,8 @@ namespace DinoDiner.Menu
         public void HoldIce()
         {
             Ice = false;
+            NotifyOfPropertyChanged("Ice");
+            NotifyOfPropertyChanged("Special");
         }
     }
 }

@@ -64,11 +64,28 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (!CaesarDressing) special.Add("Hold Dressing");
+                if (!RomaineLettuce) special.Add("Hold Lettuce");
+                if (!ParmesanCheese) special.Add("Hold Cheese");
+                return special.ToArray();
+            }
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldDressing()
         {
             this.CaesarDressing = false;
+            NotifyOfPropertyChanged("Dressing");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -77,6 +94,8 @@ namespace DinoDiner.Menu
         public void HoldLettuce()
         {
             this.RomaineLettuce = false;
+            NotifyOfPropertyChanged("Lettuce");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -85,6 +104,8 @@ namespace DinoDiner.Menu
         public void HoldCheese()
         {
             this.ParmesanCheese = false;
+            NotifyOfPropertyChanged("Cheese");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

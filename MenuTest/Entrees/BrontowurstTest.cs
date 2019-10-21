@@ -55,6 +55,86 @@ namespace DinoDiner.MenuTest
             bw.HoldOnion();
             Assert.DoesNotContain<string>("Onion", bw.Ingredients);
         }
-    }
 
+        [Fact]
+        public void ShouldHaveHoldBunSpecial()
+        {
+            Brontowurst b = new Brontowurst();
+            b.HoldBun();
+            string[] special = { "Hold Bun" };
+            Assert.Equal(b.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldPeppersSpecial()
+        {
+            Brontowurst b = new Brontowurst();
+            b.HoldPeppers();
+            string[] special = { "Hold Peppers" };
+            Assert.Equal(b.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldOnionSpecial()
+        {
+            Brontowurst b = new Brontowurst();
+            b.HoldOnion();
+            string[] special = { "Hold Onion" };
+            Assert.Equal(b.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveAllSpecials()
+        {
+            Brontowurst b = new Brontowurst();
+            b.HoldBun();
+            b.HoldPeppers();
+            b.HoldOnion();
+            string[] special = { "Hold Bun", "Hold Peppers", "Hold Onion" };
+            Assert.Equal(b.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            Brontowurst b = new Brontowurst();
+            Assert.Empty(b.Special);
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Whole Wheat Bun")]
+        public void HoldBunShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Brontowurst b = new Brontowurst();
+            Assert.PropertyChanged(b, propertyName, () =>
+            {
+                b.HoldBun();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Peppers")]
+        public void HoldPeppersShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Brontowurst b = new Brontowurst();
+            Assert.PropertyChanged(b, propertyName, () =>
+            {
+                b.HoldPeppers();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Onion")]
+        public void HoldOnionShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            Brontowurst b = new Brontowurst();
+            Assert.PropertyChanged(b, propertyName, () =>
+            {
+                b.HoldOnion();
+            });
+        }
+    }
 }

@@ -83,5 +83,34 @@ namespace DinoDiner.MenuTest
             ms.Size = Size.Large;
             Assert.Equal<Size>(Size.Large, ms.Size);
         }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            MezzorellaSticks sticks = new MezzorellaSticks();
+            Assert.Empty(sticks.Special);
+        }
+
+        [Theory]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Size")]
+        [InlineData("Description")]
+        public void ChangingSizeShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            MezzorellaSticks sticks = new MezzorellaSticks();
+            Assert.PropertyChanged(sticks, propertyName, () =>
+            {
+                sticks.Size = Size.Medium;
+            });
+            Assert.PropertyChanged(sticks, propertyName, () =>
+            {
+                sticks.Size = Size.Large;
+            });
+            Assert.PropertyChanged(sticks, propertyName, () =>
+            {
+                sticks.Size = Size.Small;
+            });
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class Brontowurst : Entree, IMenuItem
+    public class Brontowurst : Entree
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -49,6 +49,21 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (!WholeWheatBun) special.Add("Hold Bun");
+                if (!Peppers) special.Add("Hold Peppers");
+                if (!Onions) special.Add("Hold Onion");
+                return special.ToArray();
+            }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public Brontowurst()
@@ -63,6 +78,8 @@ namespace DinoDiner.Menu
         public void HoldBun()
         {
             this.WholeWheatBun = false;
+            NotifyOfPropertyChanged("Whole Wheat Bun");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -71,6 +88,8 @@ namespace DinoDiner.Menu
         public void HoldPeppers()
         {
             this.Peppers = false;
+            NotifyOfPropertyChanged("Peppers");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -79,6 +98,8 @@ namespace DinoDiner.Menu
         public void HoldOnion()
         {
             this.Onions = false;
+            NotifyOfPropertyChanged("Onion");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

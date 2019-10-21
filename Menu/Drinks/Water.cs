@@ -11,7 +11,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This is a drink on the Menu Item
     /// </summary>
-    public class Water : Drink, IMenuItem
+    public class Water : Drink
     {
         /// <summary>
         /// This is the size of the drink
@@ -33,7 +33,23 @@ namespace DinoDiner.Menu
             {
                 Price = 0.10;
                 Calories = 0;
+                NotifyOfPropertyChanged("Size");
+                NotifyOfPropertyChanged("Description");
                 size = value;
+            }
+        }
+
+        /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (Lemon) special.Add("Add Lemon");
+                if (!Ice) special.Add("Hold Ice");
+                return special.ToArray();
             }
         }
 
@@ -67,6 +83,8 @@ namespace DinoDiner.Menu
         public void AddLemon()
         {
             Lemon = true;
+            NotifyOfPropertyChanged("Lemon");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

@@ -11,14 +11,44 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This is a drink on the Menu Item
     /// </summary>
-    public class Sodasaurus : Drink, IMenuItem
+    public class Sodasaurus : Drink
     {
         /// <summary>
         /// This is the size of the drink
         /// </summary>
         private Size size;
 
-        public SodasaurusFlavor Flavor;
+        /// <summary>
+        /// This is the flavor of the Sodasaurus
+        /// </summary>
+        private SodasaurusFlavor flavor;
+
+        public SodasaurusFlavor Flavor
+        {
+            get
+            {
+                return flavor;
+            }
+            set
+            {
+                flavor = value;
+                NotifyOfPropertyChanged("Flavor");
+                NotifyOfPropertyChanged("Description");
+            }
+        }
+
+        /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (!Ice) special.Add("Hold Ice");
+                return special.ToArray();
+            }
+        }
 
         /// <summary>
         /// This is the get/set for the Size variable
@@ -36,16 +66,28 @@ namespace DinoDiner.Menu
                     case Size.Small:
                         Price = 1.50;
                         Calories = 112;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         size = value;
                         break;
                     case Size.Medium:
                         Price = 2.00;
                         Calories = 156;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         size = value;
                         break;
                     case Size.Large:
                         Price = 2.50;
                         Calories = 208;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         size = value;
                         break;
 

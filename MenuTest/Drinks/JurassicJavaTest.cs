@@ -130,5 +130,108 @@ namespace DinoDiner.MenuTest
             Assert.Contains("Water", java.Ingredients);
             Assert.Contains("Coffee", java.Ingredients);
         }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            JurassicJava java = new JurassicJava();
+            Assert.Empty(java.Special);
+        }
+
+        [Fact]
+        public void ShouldHaveLeaveRoomForCreamSpecial()
+        {
+            JurassicJava java = new JurassicJava();
+            java.LeaveRoomForCream();
+            string[] special = { "Leave Room For Cream" };
+            Assert.Equal(java.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveIceSpecial()
+        {
+            JurassicJava java = new JurassicJava();
+            java.AddIce();
+            string[] special = { "Add Ice" };
+            Assert.Equal(java.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveLemonSpecial()
+        {
+            JurassicJava java = new JurassicJava();
+            java.AddLemon();
+            string[] special = { "Add Lemon" };
+            Assert.Equal(java.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveAllSpecials()
+        {
+            JurassicJava java = new JurassicJava();
+            java.LeaveRoomForCream();
+            java.AddLemon();
+            java.AddIce();
+            string[] special = { "Leave Room For Cream", "Add Ice", "Add Lemon" };
+            Assert.Equal(java.Special, special);
+        }
+
+        [Theory]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Size")]
+        [InlineData("Description")]
+        public void ChangingSizeShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            JurassicJava java = new JurassicJava();
+            Assert.PropertyChanged(java, propertyName, () =>
+            {
+                java.Size = Size.Medium;
+            });
+            Assert.PropertyChanged(java, propertyName, () =>
+            {
+                java.Size = Size.Large;
+            });
+            Assert.PropertyChanged(java, propertyName, () =>
+            {
+                java.Size = Size.Small;
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Lemon")]
+        public void AddLemonShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            JurassicJava java = new JurassicJava();
+            Assert.PropertyChanged(java, propertyName, () =>
+            {
+                java.AddLemon();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Room For Cream")]
+        public void LeaveRoomForCreamShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            JurassicJava java = new JurassicJava();
+            Assert.PropertyChanged(java, propertyName, () =>
+            {
+                java.LeaveRoomForCream();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Ice")]
+        public void AddIceShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            JurassicJava java = new JurassicJava();
+            Assert.PropertyChanged(java, propertyName, () =>
+            {
+                java.AddIce();
+            });
+        }
     }
 }

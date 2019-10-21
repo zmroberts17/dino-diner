@@ -11,7 +11,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This is a drink on the Menu Item
     /// </summary>
-    public class JurassicJava : Drink, IMenuItem
+    public class JurassicJava : Drink
     {
         /// <summary>
         /// This is the size of the drink
@@ -21,6 +21,23 @@ namespace DinoDiner.Menu
         public bool RoomForCream;
 
         public bool Decaf;
+
+        public bool Lemon;
+
+        /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (RoomForCream) special.Add("Leave Room For Cream");
+                if (Ice) special.Add("Add Ice");
+                if (Lemon) special.Add("Add Lemon");
+                return special.ToArray();
+            }
+        }
 
         /// <summary>
         /// This is the get/set for the Size variable
@@ -38,16 +55,28 @@ namespace DinoDiner.Menu
                     case Size.Small:
                         Price = 0.59;
                         Calories = 2;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         size = value;
                         break;
                     case Size.Medium:
                         Price = 0.99;
                         Calories = 4;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         size = value;
                         break;
                     case Size.Large:
                         Price = 1.49;
                         Calories = 8;
+                        NotifyOfPropertyChanged("Price");
+                        NotifyOfPropertyChanged("Calories");
+                        NotifyOfPropertyChanged("Size");
+                        NotifyOfPropertyChanged("Description");
                         size = value;
                         break;
 
@@ -65,6 +94,7 @@ namespace DinoDiner.Menu
             Calories = 2;
             RoomForCream = false;
             Decaf = false;
+            Lemon = false;
         }
 
         /// <summary>
@@ -77,6 +107,7 @@ namespace DinoDiner.Menu
                 List<string> ingredients = new List<string>();
                 ingredients.Add("Water");
                 ingredients.Add("Coffee");
+                if (Lemon) ingredients.Add("Lemon");
                 return ingredients;
             }
         }
@@ -87,6 +118,8 @@ namespace DinoDiner.Menu
         public void LeaveRoomForCream()
         {
             RoomForCream = true;
+            NotifyOfPropertyChanged("Room For Cream");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -95,6 +128,18 @@ namespace DinoDiner.Menu
         public void AddIce()
         {
             Ice = true;
+            NotifyOfPropertyChanged("Ice");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds a lemon to the drink
+        /// </summary>
+        public void AddLemon()
+        {
+            Lemon = true;
+            NotifyOfPropertyChanged("Lemon");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

@@ -30,5 +30,11 @@ namespace DinoDiner.MenuTest
             Assert.Equal<int>(2, ingredients.Count);
         }
 
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            PterodactylWings wings = new PterodactylWings();
+            Assert.Empty(wings.Special);
+        }
     }
 }

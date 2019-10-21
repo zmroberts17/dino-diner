@@ -64,6 +64,108 @@ namespace DinoDiner.MenuTest
             sb.HoldMustard();
             Assert.DoesNotContain<string>("Mustard", sb.Ingredients);
         }
-    }
 
+        [Fact]
+        public void ShouldHaveHoldBunSpecial()
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            steak.HoldBun();
+            string[] special = { "Hold Bun" };
+            Assert.Equal(steak.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldPickleSpecial()
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            steak.HoldPickle();
+            string[] special = { "Hold Pickle" };
+            Assert.Equal(steak.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldKetchupSpecial()
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            steak.HoldKetchup();
+            string[] special = { "Hold Ketchup" };
+            Assert.Equal(steak.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveHoldMustardSpecial()
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            steak.HoldMustard();
+            string[] special = { "Hold Mustard" };
+            Assert.Equal(steak.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveAllSpecials()
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            steak.HoldBun();
+            steak.HoldPickle();
+            steak.HoldKetchup();
+            steak.HoldMustard();
+            string[] special = { "Hold Bun", "Hold Pickle", "Hold Ketchup", "Hold Mustard" };
+            Assert.Equal(steak.Special, special);
+        }
+
+        [Fact]
+        public void ShouldHaveEmptySpecialByDefault()
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            Assert.Empty(steak.Special);
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Whole Wheat Bun")]
+        public void HoldBunShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            Assert.PropertyChanged(steak, propertyName, () =>
+            {
+                steak.HoldBun();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Pickle")]
+        public void HoldPickleShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            Assert.PropertyChanged(steak, propertyName, () =>
+            {
+                steak.HoldPickle();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Ketchup")]
+        public void HoldKetchupShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            Assert.PropertyChanged(steak, propertyName, () =>
+            {
+                steak.HoldKetchup();
+            });
+        }
+
+        [Theory]
+        [InlineData("Special")]
+        [InlineData("Mustard")]
+        public void HoldMustardShouldNotifyOfPropertyChanged(string propertyName)
+        {
+            SteakosaurusBurger steak = new SteakosaurusBurger();
+            Assert.PropertyChanged(steak, propertyName, () =>
+            {
+                steak.HoldMustard();
+            });
+        }
+    }
 }

@@ -10,7 +10,7 @@ namespace DinoDiner.Menu
     /// <summary>
     /// This class contains information for this specific menu item.
     /// </summary>
-    public class PrehistoricPBJ : Entree, IMenuItem
+    public class PrehistoricPBJ : Entree
     {
         /// <summary>
         /// This variable is an ingredient for this menu item and can be removed upon request.
@@ -37,6 +37,20 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// Get method for specials
+        /// </summary>
+        public override string[] Special
+        {
+            get
+            {
+                List<string> special = new List<string>();
+                if (!peanutButter) special.Add("Hold Peanut Butter");
+                if (!jelly) special.Add("Hold Jelly");
+                return special.ToArray();
+            }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public PrehistoricPBJ()
@@ -51,6 +65,8 @@ namespace DinoDiner.Menu
         public void HoldPeanutButter()
         {
             this.peanutButter = false;
+            NotifyOfPropertyChanged("Peanut Butter");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
@@ -59,6 +75,8 @@ namespace DinoDiner.Menu
         public void HoldJelly()
         {
             this.jelly = false;
+            NotifyOfPropertyChanged("Jelly");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>
