@@ -58,6 +58,7 @@ namespace DinoDiner.Menu
             }
             set
             {
+                size = value;
                 switch (value)
                 {
                     case Size.Small:
@@ -68,7 +69,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                     case Size.Medium:
                         Price = 1.49;
@@ -78,7 +78,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                     case Size.Large:
                         Price = 1.99;
@@ -88,7 +87,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                 }
             }
@@ -123,6 +121,9 @@ namespace DinoDiner.Menu
             NotifyOfPropertyChanged("Special");
         }
 
+        /// <summary>
+        /// This method removes the sugar from the drink
+        /// </summary>
         public void RemoveSweet()
         {
             Sweet = false;
@@ -150,6 +151,16 @@ namespace DinoDiner.Menu
         {
             Lemon = false;
             NotifyOfPropertyChanged("Lemon");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds ice to the drink
+        /// </summary>
+        public void AddIce()
+        {
+            Ice = true;
+            NotifyOfPropertyChanged("Ice");
             NotifyOfPropertyChanged("Special");
         }
 

@@ -61,6 +61,7 @@ namespace DinoDiner.Menu
             }
             set
             {
+                size = value;
                 switch (value)
                 {
                     case Size.Small:
@@ -70,7 +71,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                     case Size.Medium:
                         Price = 2.00;
@@ -79,7 +79,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                     case Size.Large:
                         Price = 2.50;
@@ -88,9 +87,7 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
-
                 }
             }
         }
@@ -117,6 +114,16 @@ namespace DinoDiner.Menu
                 ingredients.Add("Cane Sugar");
                 return ingredients;
             }
+        }
+
+        /// <summary>
+        /// This method adds ice to the drink
+        /// </summary>
+        public void AddIce()
+        {
+            Ice = true;
+            NotifyOfPropertyChanged("Ice");
+            NotifyOfPropertyChanged("Special");
         }
 
         /// <summary>

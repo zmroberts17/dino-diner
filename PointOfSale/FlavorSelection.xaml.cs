@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Name: FlavorSelection.xaml.cs
+ * Author: Zane Roberts
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DinoDiner.Menu;
 
 namespace PointOfSale
 {
@@ -20,29 +25,170 @@ namespace PointOfSale
     /// </summary>
     public partial class FlavorSelection : Page
     {
-        public FlavorSelection()
+        /// <summary>
+        /// The previous page
+        /// </summary>
+        private Page previousPage;
+
+        public FlavorSelection(Page soda)
         {
             InitializeComponent();
+            previousPage = soda;
         }
 
-        public void SelectFlavor(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// This method allows the user to select a flavor for the Sodasaurus
+        /// </summary>
+        /// <param name="flavor">This is the flavor selected</param>
+        public void SelectFlavor(SodasaurusFlavor flavor)
         {
-            Button b = (Button) sender;
-            string n = b.Name;
-            if (cherryButton.Name != n) cherryButton.Background = Brushes.Gold;
-            else cherryButton.Background = Brushes.LightGreen;
-            if (chocolateButton.Name != n) chocolateButton.Background = Brushes.Gold;
-            else chocolateButton.Background = Brushes.LightGreen;
-            if (colaButton.Name != n) colaButton.Background = Brushes.Gold;
-            else colaButton.Background = Brushes.LightGreen;
-            if (limeButton.Name != n) limeButton.Background = Brushes.Gold;
-            else limeButton.Background = Brushes.LightGreen;
-            if (orangeButton.Name != n) orangeButton.Background = Brushes.Gold;
-            else orangeButton.Background = Brushes.LightGreen;
-            if (rootBeerButton.Name != n) rootBeerButton.Background = Brushes.Gold;
-            else rootBeerButton.Background = Brushes.LightGreen;
-            if (vanillaButton.Name != n) vanillaButton.Background = Brushes.Gold;
-            else vanillaButton.Background = Brushes.LightGreen;
+            if (DataContext is Order order)
+            {
+                if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is Sodasaurus soda)
+                {
+                    soda.Flavor = flavor;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void CherryClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.Cherry);
+            cherryButton.Background = Brushes.LightGreen;
+
+            chocolateButton.Background = Brushes.Gold;
+            colaButton.Background = Brushes.Gold;
+            limeButton.Background = Brushes.Gold;
+            orangeButton.Background = Brushes.Gold;
+            rootBeerButton.Background = Brushes.Gold;
+            vanillaButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void ChocolateClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.Chocolate);
+            chocolateButton.Background = Brushes.LightGreen;
+
+            cherryButton.Background = Brushes.Gold;
+            colaButton.Background = Brushes.Gold;
+            limeButton.Background = Brushes.Gold;
+            orangeButton.Background = Brushes.Gold;
+            rootBeerButton.Background = Brushes.Gold;
+            vanillaButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void ColaClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.Cola);
+            colaButton.Background = Brushes.LightGreen;
+
+            chocolateButton.Background = Brushes.Gold;
+            cherryButton.Background = Brushes.Gold;
+            limeButton.Background = Brushes.Gold;
+            orangeButton.Background = Brushes.Gold;
+            rootBeerButton.Background = Brushes.Gold;
+            vanillaButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void LimeClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.Lime);
+            limeButton.Background = Brushes.LightGreen;
+
+            chocolateButton.Background = Brushes.Gold;
+            colaButton.Background = Brushes.Gold;
+            cherryButton.Background = Brushes.Gold;
+            orangeButton.Background = Brushes.Gold;
+            rootBeerButton.Background = Brushes.Gold;
+            vanillaButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void OrangeClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.Orange);
+            orangeButton.Background = Brushes.LightGreen;
+
+            chocolateButton.Background = Brushes.Gold;
+            colaButton.Background = Brushes.Gold;
+            limeButton.Background = Brushes.Gold;
+            cherryButton.Background = Brushes.Gold;
+            rootBeerButton.Background = Brushes.Gold;
+            vanillaButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void RootBeerClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.RootBeer);
+            rootBeerButton.Background = Brushes.LightGreen;
+
+            chocolateButton.Background = Brushes.Gold;
+            colaButton.Background = Brushes.Gold;
+            limeButton.Background = Brushes.Gold;
+            orangeButton.Background = Brushes.Gold;
+            cherryButton.Background = Brushes.Gold;
+            vanillaButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
+        }
+
+        /// <summary>
+        /// Actions when a flavor button is clicked
+        /// </summary>
+        /// <param name="sender">the button clicked</param>
+        /// <param name="e">The action of clicking</param>
+        public void VanillaClick(object sender, RoutedEventArgs e)
+        {
+            SelectFlavor(SodasaurusFlavor.Vanilla);
+            vanillaButton.Background = Brushes.LightGreen;
+
+            chocolateButton.Background = Brushes.Gold;
+            colaButton.Background = Brushes.Gold;
+            limeButton.Background = Brushes.Gold;
+            orangeButton.Background = Brushes.Gold;
+            rootBeerButton.Background = Brushes.Gold;
+            cherryButton.Background = Brushes.Gold;
+
+            NavigationService.Navigate(previousPage);
         }
     }
 }

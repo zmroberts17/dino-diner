@@ -8,11 +8,36 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace DinoDiner.Menu
 {
-    public class Order : IOrderItem, IObservable<IOrderItem>
+    public class Order : IOrderItem, IObservable<IOrderItem>, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Constructor for the Order class
+        /// </summary>
+        public Order()
+        {
+            this.Items.CollectionChanged += this.OnCollectionChanged;
+
+        }
+
+        public void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            NotifyOfPropertyChanged("SubtotalCost");
+        }
+
+        /// <summary>
+        /// The method that is called when a property is changed.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that was changed</param>
+        protected void NotifyOfPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         /// <summary>
         /// List of the items in the order
         /// </summary>
@@ -37,6 +62,8 @@ namespace DinoDiner.Menu
         /// This is the sales tax cost plus the subtotal cost
         /// </summary>
         private double totalCost;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Get and set methods for the Items variable

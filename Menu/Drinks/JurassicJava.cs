@@ -50,6 +50,7 @@ namespace DinoDiner.Menu
             }
             set
             {
+                size = value;
                 switch (value)
                 {
                     case Size.Small:
@@ -59,7 +60,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                     case Size.Medium:
                         Price = 0.99;
@@ -68,7 +68,6 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
                     case Size.Large:
                         Price = 1.49;
@@ -77,9 +76,7 @@ namespace DinoDiner.Menu
                         NotifyOfPropertyChanged("Calories");
                         NotifyOfPropertyChanged("Size");
                         NotifyOfPropertyChanged("Description");
-                        size = value;
                         break;
-
                 }
             }
         }
@@ -123,6 +120,16 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method removes the room for cream
+        /// </summary>
+        public void RemoveRoomForCream()
+        {
+            RoomForCream = false;
+            NotifyOfPropertyChanged("Room For Cream");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method adds ice to the drink
         /// </summary>
         public void AddIce()
@@ -140,6 +147,38 @@ namespace DinoDiner.Menu
             Lemon = true;
             NotifyOfPropertyChanged("Lemon");
             NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method removes the lemon from the drink
+        /// </summary>
+        public void RemoveLemon()
+        {
+            Lemon = false;
+            NotifyOfPropertyChanged("Lemon");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method makes the drink decaf
+        /// </summary>
+        public void MakeDecaf()
+        {
+            Decaf = true;
+            NotifyOfPropertyChanged("Decaf");
+            NotifyOfPropertyChanged("Special");
+            NotifyOfPropertyChanged("Description");
+        }
+
+        /// <summary>
+        /// This method makes the drink not decaf
+        /// </summary>
+        public void MakeNotDecaf()
+        {
+            Decaf = false;
+            NotifyOfPropertyChanged("Decaf");
+            NotifyOfPropertyChanged("Special");
+            NotifyOfPropertyChanged("Description");
         }
 
         /// <summary>

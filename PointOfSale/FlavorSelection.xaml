@@ -20,13 +20,13 @@
             <RowDefinition Height="130*"/>
             <RowDefinition Height="130*"/>
         </Grid.RowDefinitions>
-        <Button Name="cherryButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="0" Click="SelectFlavor" Content="Cherry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90"/>
-        <Button Name="chocolateButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="1" Click="SelectFlavor" Content="Chocolate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="1,0,0,0"/>
-        <Button Name="colaButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="2" Click="SelectFlavor" Content="Cola" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0.333,0.333,0,0"/>
-        <Button Name="limeButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="0" Click="SelectFlavor" Content="Lime" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0,124.333,0,0" Grid.RowSpan="2"/>
-        <Button Name="orangeButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="1" Click="SelectFlavor" Content="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="1,124.333,0,0" Grid.RowSpan="2"/>
-        <Button Name="rootBeerButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="2" Click="SelectFlavor" Content="Root Beer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0.333,124.333,0,0" Grid.RowSpan="2"/>
-        <Button Name="vanillaButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="3" Grid.Column="0" Click="SelectFlavor" Content="Vanilla" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0,24,0,0"/>
+        <Button Name="cherryButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="0" Click="CherryClick" Content="Cherry" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90"/>
+        <Button Name="chocolateButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="1" Click="ChocolateClick" Content="Chocolate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="1,0,0,0"/>
+        <Button Name="colaButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="2" Click="ColaClick" Content="Cola" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0.333,0.333,0,0"/>
+        <Button Name="limeButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="0" Click="LimeClick" Content="Lime" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0,124.333,0,0" Grid.RowSpan="2"/>
+        <Button Name="orangeButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="1" Click="OrangeClick" Content="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="1,124.333,0,0" Grid.RowSpan="2"/>
+        <Button Name="rootBeerButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="1" Grid.Column="2" Click="RootBeerClick" Content="Root Beer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0.333,124.333,0,0" Grid.RowSpan="2"/>
+        <Button Name="vanillaButton" Style="{StaticResource MyButton}" FontSize="24" Background="Gold" Grid.Row="3" Grid.Column="0" Click="VanillaClick" Content="Vanilla" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="90" Margin="0,24,0,0"/>
         <TextBlock Text="Add to Order" FontSize="24" HorizontalAlignment="Left" Margin="147,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="46" Width="153"/>
     </Grid>
 </Page>

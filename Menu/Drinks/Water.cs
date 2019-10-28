@@ -31,11 +31,11 @@ namespace DinoDiner.Menu
             }
             set
             {
+                size = value;
                 Price = 0.10;
                 Calories = 0;
                 NotifyOfPropertyChanged("Size");
                 NotifyOfPropertyChanged("Description");
-                size = value;
             }
         }
 
@@ -84,6 +84,23 @@ namespace DinoDiner.Menu
         {
             Lemon = true;
             NotifyOfPropertyChanged("Lemon");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method removes the lemon from the drink
+        /// </summary>
+        public void RemoveLemon()
+        {
+            Lemon = false;
+            NotifyOfPropertyChanged("Lemon");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        public void AddIce()
+        {
+            Ice = true;
+            NotifyOfPropertyChanged("Ice");
             NotifyOfPropertyChanged("Special");
         }
 
