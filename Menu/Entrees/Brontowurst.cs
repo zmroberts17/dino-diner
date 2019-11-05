@@ -83,6 +83,16 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddBun()
+        {
+            this.WholeWheatBun = true;
+            NotifyOfPropertyChanged("Whole Wheat Bun");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldPeppers()
@@ -93,11 +103,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddPeppers()
+        {
+            this.Peppers = true;
+            NotifyOfPropertyChanged("Peppers");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldOnion()
         {
             this.Onions = false;
+            NotifyOfPropertyChanged("Onion");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddOnion()
+        {
+            this.Onions = true;
             NotifyOfPropertyChanged("Onion");
             NotifyOfPropertyChanged("Special");
         }

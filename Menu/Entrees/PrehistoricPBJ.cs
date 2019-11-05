@@ -70,11 +70,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddPeanutButter()
+        {
+            this.peanutButter = true;
+            NotifyOfPropertyChanged("Peanut Butter");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldJelly()
         {
             this.jelly = false;
+            NotifyOfPropertyChanged("Jelly");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddJelly()
+        {
+            this.jelly = true;
             NotifyOfPropertyChanged("Jelly");
             NotifyOfPropertyChanged("Special");
         }

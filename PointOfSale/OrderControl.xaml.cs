@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* OrderControl.xaml.cs
+ * Author: Zane Roberts
+ */ 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +32,6 @@ namespace PointOfSale
         public OrderControl()
         {
             InitializeComponent();
-            MountItemListener();
         }
 
         public void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs args)
@@ -38,19 +41,22 @@ namespace PointOfSale
 
         public void OnSelectionChanged(object sender, EventArgs args)
         {
-            // THE SELECTED ITEM IS NULL FOR SOME REASON
             if (OrderItems.SelectedItem is Side side)
             {
-                NavigationService?.Navigate(new SideSelection(side));
+                NavigationService.Navigate(new SideSelection(side));
             }
-            else if (OrderItems.SelectedItem is Entree entree)
+            else if (OrderItems.SelectedItem is CretaceousCombo combo)
             {
-                NavigationService?.Navigate(new EntreeSelection(entree));
+                NavigationService.Navigate(new CustomizeCombo(combo));
             }
             else if (OrderItems.SelectedItem is Drink drink)
             {
-                NavigationService?.Navigate(new DrinkSelection());
+                NavigationService.Navigate(new DrinkSelection(drink));
             } 
+            else
+            {
+                NavigationService.Navigate(new MenuCategorySelection());
+            }
         }
 
         private void MountItemListener()
@@ -74,7 +80,7 @@ namespace PointOfSale
                 {
                     if (element.DataContext is IOrderItem item)
                     {
-                        order.Items.Remove(item);
+                        order.Remove(item);
                     }
                 }
             }

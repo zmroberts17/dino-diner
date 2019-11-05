@@ -14,6 +14,6 @@
     <DockPanel>
         <local:OrderControl x:Name="OrderControl" DockPanel.Dock="Right" Width="200">
         </local:OrderControl>
-        <Frame Name="OrderUI" Source="MenuCategorySelection.xaml" LoadCompleted="OnLoadCompleted" DataContextChanged="OnDataContextChanged"></Frame>
+        <Frame Name="OrderUI" Source="MenuCategorySelection.xaml" LoadCompleted="OnLoadCompleted" DataContextChanged="OnDataContextChanged" NavigationUIVisibility="Hidden"></Frame>
     </DockPanel>
 </Window>

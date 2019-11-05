@@ -26,28 +26,33 @@ namespace PointOfSale
     public partial class SideSelection : Page
     {
         /// <summary>
-        /// This is the previous page
-        /// </summary>
-        private Page previousPage;
-
-        /// <summary>
         /// Constructor
         /// </summary>
         public SideSelection()
         {
             InitializeComponent();
-            DataContext = null;
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="page">Previous page</param>
-        public SideSelection(Page page)
+        /// <param name="combo">The current combo</param>
+        public SideSelection(CretaceousCombo c)
         {
             InitializeComponent();
-            DataContext = null;
-            previousPage = page;
+            combo = c;
+            if (combo.Side.Size == DinoDiner.Menu.Size.Small)
+            {
+                smallButton.IsChecked = true;
+            }
+            else if (combo.Side.Size == DinoDiner.Menu.Size.Medium)
+            {
+                mediumButton.IsChecked = true;
+            }
+            else if (combo.Side.Size == DinoDiner.Menu.Size.Large)
+            {
+                largeButton.IsChecked = true;
+            }
         }
 
         /// <summary>
@@ -57,9 +62,21 @@ namespace PointOfSale
         public SideSelection(Side side)
         {
             InitializeComponent();
-            DataContext = side;
-            OnCurrentChanged(side);
+            if (side.Size == DinoDiner.Menu.Size.Small)
+            {
+                smallButton.IsChecked = true;
+            }
+            else if (side.Size == DinoDiner.Menu.Size.Medium)
+            {
+                mediumButton.IsChecked = true;
+            }
+            else if (side.Size == DinoDiner.Menu.Size.Large)
+            {
+                largeButton.IsChecked = true;
+            }
         }
+
+        private CretaceousCombo combo = null;
 
         /// <summary>
         /// Side button clicked
@@ -68,12 +85,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void SelectFryceritops(object sender, RoutedEventArgs e)
         {
-            fryButton.Background = Brushes.LightGreen;
             SelectSide(new Fryceritops());
-
-            macButton.Background = Brushes.Gold;
-            triButton.Background = Brushes.Gold;
-            sticksButton.Background = Brushes.Gold;
         }
 
         /// <summary>
@@ -83,12 +95,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void SelectMeteorMac(object sender, RoutedEventArgs e)
         {
-            macButton.Background = Brushes.LightGreen;
             SelectSide(new MeteorMacAndCheese());
-
-            fryButton.Background = Brushes.Gold;
-            triButton.Background = Brushes.Gold;
-            sticksButton.Background = Brushes.Gold;
         }
 
         /// <summary>
@@ -98,12 +105,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void SelectTriceritops(object sender, RoutedEventArgs e)
         {
-            triButton.Background = Brushes.LightGreen;
             SelectSide(new Triceritots());
-
-            fryButton.Background = Brushes.Gold;
-            macButton.Background = Brushes.Gold;
-            sticksButton.Background = Brushes.Gold;
         }
 
         /// <summary>
@@ -113,12 +115,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void SelectMezzorella(object sender, RoutedEventArgs e)
         {
-            sticksButton.Background = Brushes.LightGreen;
             SelectSide(new MezzorellaSticks());
-
-            fryButton.Background = Brushes.Gold;
-            triButton.Background = Brushes.Gold;
-            macButton.Background = Brushes.Gold;
         }
 
         /// <summary>
@@ -128,7 +125,14 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void DoneButtonClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(previousPage);
+            if (combo != null)
+            {
+                NavigationService.Navigate(new CustomizeCombo(combo));
+            }
+            else
+            {
+                NavigationService.Navigate(new MenuCategorySelection());
+            }
         }
 
         /// <summary>
@@ -171,8 +175,15 @@ namespace PointOfSale
         {
             if (DataContext is Order order)
             {
-                order.Items.Add(side);
-                CollectionViewSource.GetDefaultView(order.Items).MoveCurrentToLast();
+                if (combo != null)
+                {
+                    combo.Side = side;
+                }
+                else
+                {
+                    order.Add(side);
+                    CollectionViewSource.GetDefaultView(order.Items).MoveCurrentToLast();
+                }
             }
         }
 
@@ -188,6 +199,12 @@ namespace PointOfSale
                 if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is Side side)
                 {
                     side.Size = size;
+                    NavigationService.Navigate(new MenuCategorySelection());
+                }
+                else if (combo != null)
+                {
+                    combo.Side.Size = size;
+                    NavigationService.GoBack();
                 }
             }
         }
@@ -200,7 +217,6 @@ namespace PointOfSale
         public void ClickSmall(object sender, EventArgs args)
         {
             SetSize(DinoDiner.Menu.Size.Small);
-            NavigationService.Navigate(previousPage);
         }
 
         /// <summary>
@@ -211,7 +227,6 @@ namespace PointOfSale
         public void ClickMedium(object sender, EventArgs args)
         {
             SetSize(DinoDiner.Menu.Size.Medium);
-            NavigationService.Navigate(previousPage);
         }
 
         /// <summary>
@@ -222,7 +237,6 @@ namespace PointOfSale
         public void ClickLarge(object sender, EventArgs args)
         {
             SetSize(DinoDiner.Menu.Size.Large);
-            NavigationService.Navigate(previousPage);
         }
     }
 }

@@ -122,11 +122,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddBun()
+        {
+            this.wholeWheatBun = true;
+            NotifyOfPropertyChanged("Whole Wheat Bun");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldLettuce()
         {
             this.lettuce = false;
+            NotifyOfPropertyChanged("Lettuce");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddLettuce()
+        {
+            this.lettuce = true;
             NotifyOfPropertyChanged("Lettuce");
             NotifyOfPropertyChanged("Special");
         }
@@ -142,11 +162,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddTomato()
+        {
+            this.tomato = true;
+            NotifyOfPropertyChanged("Tomato");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldOnion()
         {
             this.onion = false;
+            NotifyOfPropertyChanged("Onion");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddOnion()
+        {
+            this.onion = true;
             NotifyOfPropertyChanged("Onion");
             NotifyOfPropertyChanged("Special");
         }
@@ -162,11 +202,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddPickle()
+        {
+            this.pickle = true;
+            NotifyOfPropertyChanged("Pickle");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldKetchup()
         {
             this.ketchup = false;
+            NotifyOfPropertyChanged("Ketchup");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddKetchup()
+        {
+            this.ketchup = true;
             NotifyOfPropertyChanged("Ketchup");
             NotifyOfPropertyChanged("Special");
         }
@@ -182,11 +242,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddMustard()
+        {
+            this.mustard = true;
+            NotifyOfPropertyChanged("Mustard");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldMayo()
         {
             this.mayo = false;
+            NotifyOfPropertyChanged("Mayo");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds the given item to the specific order.
+        /// </summary>
+        public void AddMayo()
+        {
+            this.mayo = true;
             NotifyOfPropertyChanged("Mayo");
             NotifyOfPropertyChanged("Special");
         }

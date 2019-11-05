@@ -91,11 +91,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds a bun to the specific order.
+        /// </summary>
+        public void AddBun()
+        {
+            this.WholeWheatBun = true;
+            NotifyOfPropertyChanged("Whole Wheat Bun");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldPickle()
         {
             this.Pickle = false;
+            NotifyOfPropertyChanged("Pickle");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds a bun to the specific order.
+        /// </summary>
+        public void AddPickle()
+        {
+            this.Pickle = true;
             NotifyOfPropertyChanged("Pickle");
             NotifyOfPropertyChanged("Special");
         }
@@ -111,11 +131,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method adds a bun to the specific order.
+        /// </summary>
+        public void AddKetchup()
+        {
+            this.Ketchup = true;
+            NotifyOfPropertyChanged("Ketchup");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldMustard()
         {
             this.Mustard = false;
+            NotifyOfPropertyChanged("Mustard");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// This method adds a bun to the specific order.
+        /// </summary>
+        public void AddMustard()
+        {
+            this.Mustard = true;
             NotifyOfPropertyChanged("Mustard");
             NotifyOfPropertyChanged("Special");
         }

@@ -89,6 +89,16 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// The method adds cheese to the specific order.
+        /// </summary>
+        public void AddDressing()
+        {
+            this.CaesarDressing = true;
+            NotifyOfPropertyChanged("Dressing");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldLettuce()
@@ -99,11 +109,31 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// The method adds cheese to the specific order.
+        /// </summary>
+        public void AddLettuce()
+        {
+            this.RomaineLettuce = true;
+            NotifyOfPropertyChanged("Lettuce");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
         /// This method withholds the given item from the specific order.
         /// </summary>
         public void HoldCheese()
         {
             this.ParmesanCheese = false;
+            NotifyOfPropertyChanged("Cheese");
+            NotifyOfPropertyChanged("Special");
+        }
+
+        /// <summary>
+        /// The method adds cheese to the specific order.
+        /// </summary>
+        public void AddCheese()
+        {
+            this.ParmesanCheese = true;
             NotifyOfPropertyChanged("Cheese");
             NotifyOfPropertyChanged("Special");
         }

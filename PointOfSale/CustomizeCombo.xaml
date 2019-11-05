@@ -10,20 +10,24 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="315*"/>
-            <ColumnDefinition Width="315*"/>
-            <ColumnDefinition Width="171*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="160"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="99*"/>
             <RowDefinition Height="214*"/>
             <RowDefinition Height="137*"/>
         </Grid.RowDefinitions>
-        <Button Style="{StaticResource MyButton}" Background="Gold" Grid.Column="1" FontSize="28" Click="SelectDrink" Content="Current &#x0a;  Drink" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="130" Margin="0.333,0.333,0,0" Grid.Row="1"/>
-        <RadioButton IsChecked="True" FontSize="28" Content="Small" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="194" Margin="0,34.333,0,0" Grid.Row="2"/>
-        <RadioButton FontSize="28" Content="Medium" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="194" Grid.ColumnSpan="2" Margin="130,34.333,0,0" Grid.Row="2"/>
-        <RadioButton FontSize="28" Content="Large" HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" Width="165" Grid.Column="1" Margin="87.333,34.333,0,0" Grid.Row="2"/>
+        <Button Style="{StaticResource MyButton}" Background="Gold" FontSize="28" Click="SelectSide" Content="Current &#xA;   Side" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="100" Grid.Row="1"/>
+        <Button Style="{StaticResource MyButton}" Background="Gold" FontSize="28" Click="SelectDrink" Content="Current &#x0a;  Drink" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="100" Grid.Row="1" Grid.Column="1"/>
+        <Button Style="{StaticResource MyButton}" Background="Gold" FontSize="28" Click="SelectEntree" Content="Current &#x0a; Entree" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="100" Grid.Row="1" Grid.Column="2"/>
+        <Button Style="{StaticResource MyButton}" Background="Black" Foreground="White" FontSize="24" Click="DoneClick" Content="Done" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="60" Grid.Column="2"/>
+        <RadioButton Name="smallButton" IsChecked="True" Click="SelectSmall" FontSize="28" Content="Small" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="194" Margin="0,34,0,0" Grid.Row="2"/>
+        <RadioButton Name="mediumButton" Click="SelectMedium" FontSize="28" Content="Medium" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="194" Grid.ColumnSpan="2" Margin="0,34,0,0" Grid.Row="2" Grid.Column="1"/>
+        <RadioButton Name="largeButton" Click="SelectLarge" FontSize="28" Content="Large" HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" Width="165" Margin="0,34,0,0" Grid.Row="2" Grid.Column="2"/>
         <TextBlock Text="Add to Order" FontSize="24" HorizontalAlignment="Left" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" Width="237" Grid.ColumnSpan="2"/>
-        <Button Style="{StaticResource MyButton}" Background="Gold" FontSize="28" Click="SelectSide" Content="Current &#xA;   Side" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="130" Margin="0,0.333,0,0" Grid.Row="1"/>
+        <ContentControl Content="{Binding Path=Items}"/>
     </Grid>
 </Page>

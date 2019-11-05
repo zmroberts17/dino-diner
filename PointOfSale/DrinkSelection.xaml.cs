@@ -24,12 +24,7 @@ namespace PointOfSale
     /// Interaction logic for DrinkSelection.xaml
     /// </summary>
     public partial class DrinkSelection : Page
-    {
-        /// <summary>
-        /// This is the previous page
-        /// </summary>
-        private Page previousPage;
-
+    {        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -37,15 +32,145 @@ namespace PointOfSale
         {
             InitializeComponent();
         }
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="page">Previous page</param>
-        public DrinkSelection(Page page)
+        /// <param name="combo">The current combo</param>
+        public DrinkSelection(CretaceousCombo c)
         {
             InitializeComponent();
-            previousPage = page;
+            combo = c;
+
+            if (combo.Drink.Size == DinoDiner.Menu.Size.Small)
+            {
+                smallButton.IsChecked = true;
+            }
+            else if (combo.Drink.Size == DinoDiner.Menu.Size.Medium)
+            {
+                mediumButton.IsChecked = true;
+            }
+            else if (combo.Drink.Size == DinoDiner.Menu.Size.Large)
+            {
+                largeButton.IsChecked = true;
+            }
+
+            if (combo.Drink is Sodasaurus soda)
+            {
+                topButton.Content = "Flavor";
+                topButton.Background = Brushes.Gold;
+
+                middleButton.Content = "";
+                middleButton.Background = Brushes.Gray;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.Gold;
+            }
+            else if (combo.Drink is JurassicJava java)
+            {
+                topButton.Content = "Decaf";
+                topButton.Background = Brushes.Gold;
+
+                middleButton.Content = "Add Room \n for Cream";
+                middleButton.Background = Brushes.Gold;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.LightGreen;
+            }
+            else if (combo.Drink is Tyrannotea tea)
+            {
+                topButton.Content = "Sweet";
+                topButton.Background = Brushes.Gold;
+
+                middleButton.Content = "Add Lemon";
+                middleButton.Background = Brushes.Gold;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.Gold;
+            }
+            else if (combo.Drink is Water water)
+            {
+                topButton.Content = "";
+                topButton.Background = Brushes.Gray;
+
+                middleButton.Content = "Add Lemon";
+                middleButton.Background = Brushes.Gold;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.Gold;
+            }
+        }
+
+        /// <summary>
+        /// The combo selected
+        /// </summary>
+        private CretaceousCombo combo = null;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="page">The page before this one</param>
+        /// <param name="drink">The current drink selected</param>
+        public DrinkSelection(Drink drink)
+        {
+            InitializeComponent();
+            if (drink.Size == DinoDiner.Menu.Size.Small)
+            {
+                smallButton.IsChecked = true;
+            }
+            else if (drink.Size == DinoDiner.Menu.Size.Medium)
+            {
+                mediumButton.IsChecked = true;
+            }
+            else if (drink.Size == DinoDiner.Menu.Size.Large)
+            {
+                largeButton.IsChecked = true;
+            }
+
+            if (drink is Sodasaurus soda)
+            {
+                topButton.Content = "Flavor";
+                topButton.Background = Brushes.Gold;
+
+                middleButton.Content = "";
+                middleButton.Background = Brushes.Gray;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.Gold;
+            }
+            else if (drink is JurassicJava java)
+            {
+                topButton.Content = "Decaf";
+                topButton.Background = Brushes.Gold;
+
+                middleButton.Content = "Add Room \n for Cream";
+                middleButton.Background = Brushes.Gold;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.LightGreen;
+            }
+            else if (drink is Tyrannotea tea)
+            {
+                topButton.Content = "Sweet";
+                topButton.Background = Brushes.Gold;
+
+                middleButton.Content = "Add Lemon";
+                middleButton.Background = Brushes.Gold;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.Gold;
+            }
+            else if (drink is Water water)
+            {
+                topButton.Content = "";
+                topButton.Background = Brushes.Gray;
+
+                middleButton.Content = "Add Lemon";
+                middleButton.Background = Brushes.Gold;
+
+                bottomButton.Content = "Hold Ice";
+                bottomButton.Background = Brushes.Gold;
+            }
         }
 
         /// <summary>
@@ -57,8 +182,7 @@ namespace PointOfSale
         {
             if ((string)topButton.Content == "Flavor")
             {
-                Page page = this;
-                NavigationService.Navigate(new FlavorSelection(page));
+                NavigationService.Navigate(new FlavorSelection());
             }
             else if ((string)topButton.Content == "Sweet")
             {
@@ -156,6 +280,13 @@ namespace PointOfSale
                 {
                     java.MakeDecaf();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.MakeDecaf();
+                    }
+                }
             }
         }
 
@@ -171,6 +302,13 @@ namespace PointOfSale
                 if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is JurassicJava java)
                 {
                     java.MakeNotDecaf();
+                }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.MakeNotDecaf();
+                    }
                 }
             }
         }
@@ -188,6 +326,13 @@ namespace PointOfSale
                 {
                     tea.AddSweet();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is Tyrannotea t)
+                    {
+                        t.AddSweet();
+                    }
+                }
             }
         }
 
@@ -203,6 +348,13 @@ namespace PointOfSale
                 if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is Tyrannotea tea)
                 {
                     tea.RemoveSweet();
+                }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is Tyrannotea t)
+                    {
+                        t.RemoveSweet();
+                    }
                 }
             }
         }
@@ -228,6 +380,21 @@ namespace PointOfSale
                 {
                     java.AddLemon();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.AddLemon();
+                    }
+                    else if (combo.Drink is Tyrannotea t)
+                    {
+                        t.AddLemon();
+                    }
+                    else if (combo.Drink is Water w)
+                    {
+                        w.AddLemon();
+                    }
+                }
             }
         }
 
@@ -252,6 +419,21 @@ namespace PointOfSale
                 {
                     java.RemoveLemon();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.RemoveLemon();
+                    }
+                    else if (combo.Drink is Tyrannotea t)
+                    {
+                        t.RemoveLemon();
+                    }
+                    else if (combo.Drink is Water w)
+                    {
+                        w.RemoveLemon();
+                    }
+                }
             }
         }
 
@@ -268,6 +450,13 @@ namespace PointOfSale
                 {
                     java.LeaveRoomForCream();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.LeaveRoomForCream();
+                    }
+                }
             }
         }
 
@@ -283,6 +472,13 @@ namespace PointOfSale
                 if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is JurassicJava java)
                 {
                     java.RemoveRoomForCream();
+                }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.RemoveRoomForCream();
+                    }
                 }
             }
         }
@@ -312,6 +508,25 @@ namespace PointOfSale
                 {
                     water.AddIce();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is JurassicJava j)
+                    {
+                        j.AddIce();
+                    }
+                    else if (combo.Drink is Tyrannotea t)
+                    {
+                        t.AddIce();
+                    }
+                    else if (combo.Drink is Sodasaurus s)
+                    {
+                        s.AddIce();
+                    }
+                    else if (combo.Drink is Water w)
+                    {
+                        w.AddIce();
+                    }
+                }
             }
         }
 
@@ -340,6 +555,10 @@ namespace PointOfSale
                 {
                     water.HoldIce();
                 }
+                else if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    combo.Drink.HoldIce();
+                }
             }
         }
 
@@ -350,22 +569,14 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void SodasaurusButtonClicked(object sender, RoutedEventArgs e)
         {
-            if (!sodasaurusButton.Background.Equals(Brushes.LightGreen))
-            {
-                sodasaurusButton.Background = Brushes.LightGreen;
-                tyrannoteaButton.Background = Brushes.Gold;
-                jurassicJavaButton.Background = Brushes.Gold;
-                waterButton.Background = Brushes.Gold;
+            topButton.Content = "Flavor";
+            topButton.Background = Brushes.Gold;
 
-                topButton.Content = "Flavor";
-                topButton.Background = Brushes.Gold;
+            middleButton.Content = "";
+            middleButton.Background = Brushes.Gray;
 
-                middleButton.Content = "";
-                middleButton.Background = Brushes.Gray;
-
-                bottomButton.Content = "Hold Ice";
-                bottomButton.Background = Brushes.Gold;
-            }
+            bottomButton.Content = "Hold Ice";
+            bottomButton.Background = Brushes.Gold;
 
             SelectDrink(new Sodasaurus());
         }
@@ -377,22 +588,14 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void TyrannoteaButtonClicked(object sender, RoutedEventArgs e)
         {
-            if (!tyrannoteaButton.Background.Equals(Brushes.LightGreen))
-            {
-                sodasaurusButton.Background = Brushes.Gold;
-                tyrannoteaButton.Background = Brushes.LightGreen;
-                jurassicJavaButton.Background = Brushes.Gold;
-                waterButton.Background = Brushes.Gold;
+            topButton.Content = "Sweet";
+            topButton.Background = Brushes.Gold;
 
-                topButton.Content = "Sweet";
-                topButton.Background = Brushes.Gold;
+            middleButton.Content = "Add Lemon";
+            middleButton.Background = Brushes.Gold;
 
-                middleButton.Content = "Add Lemon";
-                middleButton.Background = Brushes.Gold;
-
-                bottomButton.Content = "Hold Ice";
-                bottomButton.Background = Brushes.Gold;
-            }
+            bottomButton.Content = "Hold Ice";
+            bottomButton.Background = Brushes.Gold;
 
             SelectDrink(new Tyrannotea());
         }
@@ -404,22 +607,14 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void JurassicJavaButtonClicked(object sender, RoutedEventArgs e)
         {
-            if (!jurassicJavaButton.Background.Equals(Brushes.LightGreen))
-            {
-                sodasaurusButton.Background = Brushes.Gold;
-                tyrannoteaButton.Background = Brushes.Gold;
-                jurassicJavaButton.Background = Brushes.LightGreen;
-                waterButton.Background = Brushes.Gold;
+            topButton.Content = "Decaf";
+            topButton.Background = Brushes.Gold;
 
-                topButton.Content = "Decaf";
-                topButton.Background = Brushes.Gold;
+            middleButton.Content = "Add Room \n for Cream";
+            middleButton.Background = Brushes.Gold;
 
-                middleButton.Content = "Add Room \n for Cream";
-                middleButton.Background = Brushes.Gold;
-
-                bottomButton.Content = "Hold Ice";
-                bottomButton.Background = Brushes.LightGreen;
-            }
+            bottomButton.Content = "Hold Ice";
+            bottomButton.Background = Brushes.LightGreen;
 
             SelectDrink(new JurassicJava());
         }
@@ -431,22 +626,14 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void WaterButtonClicked(object sender, RoutedEventArgs e)
         {
-            if (!waterButton.Background.Equals(Brushes.LightGreen))
-            {
-                sodasaurusButton.Background = Brushes.Gold;
-                tyrannoteaButton.Background = Brushes.Gold;
-                jurassicJavaButton.Background = Brushes.Gold;
-                waterButton.Background = Brushes.LightGreen;
+            topButton.Content = "";
+            topButton.Background = Brushes.Gray;
 
-                topButton.Content = "";
-                topButton.Background = Brushes.Gray;
+            middleButton.Content = "Add Lemon";
+            middleButton.Background = Brushes.Gold;
 
-                middleButton.Content = "Add Lemon";
-                middleButton.Background = Brushes.Gold;
-
-                bottomButton.Content = "Hold Ice";
-                bottomButton.Background = Brushes.Gold;
-            }
+            bottomButton.Content = "Hold Ice";
+            bottomButton.Background = Brushes.Gold;
 
             SelectDrink(new Water());
         }
@@ -458,7 +645,14 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void DoneButtonClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(previousPage);
+            if (combo != null)
+            {
+                NavigationService.Navigate(new CustomizeCombo(combo));
+            }
+            else
+            {
+                NavigationService.Navigate(new MenuCategorySelection());
+            }
         }
 
         /// <summary>
@@ -470,8 +664,15 @@ namespace PointOfSale
         {
             if (DataContext is Order order)
             {
-                order.Items.Add(drink);
-                CollectionViewSource.GetDefaultView(order.Items).MoveCurrentToLast();
+                if (combo != null)
+                {
+                    combo.Drink = drink;
+                }
+                else
+                {
+                    order.Add(drink);
+                    CollectionViewSource.GetDefaultView(order.Items).MoveCurrentToLast();
+                }
             }
         }
 
@@ -486,6 +687,10 @@ namespace PointOfSale
                 if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is Drink drink)
                 {
                     drink.Size = size;
+                }
+                if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    combo.Drink.Size = size;
                 }
             }
         }

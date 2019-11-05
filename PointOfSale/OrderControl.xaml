@@ -20,22 +20,24 @@
         
         <TextBlock Text="Order" TextAlignment="Right" FontWeight="Bold" Grid.Row="0"/>
         <TextBlock Text="#" Grid.Row="0" Grid.Column="1" FontWeight="Bold" Margin="5,0,0,0"/>
-        <ListBox Name="OrderItems" DataContextChanged="OnDataContextChanged" SelectionChanged="OnSelectionChanged" Grid.Row="1" Grid.ColumnSpan="2" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Items, UpdateSourceTrigger=PropertyChanged}">
+        <ListBox Name="OrderItems" SelectionChanged="OnSelectionChanged" Grid.Row="1" Grid.ColumnSpan="2" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Items, UpdateSourceTrigger=PropertyChanged}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid MinWidth="180">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="20"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding Path=Description}"/>
-                        <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Special}" BorderBrush="White"/>
-                        <Button Grid.Column="1" Click="OnRemoveOrderItem">X</Button>
-                    </Grid>
+                    <StackPanel>
+                        <Grid MinWidth="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Path=Description}"/>
+                            <Button Grid.Column="1" Click="OnRemoveOrderItem">X</Button>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding Path=Special}" BorderBrush="White" Margin="20,0,0,0"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

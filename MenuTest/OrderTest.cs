@@ -13,11 +13,11 @@ namespace DinoDiner.MenuTest
         {
             Order order = new Order();
             Brontowurst b = new Brontowurst();
-            order.AddItem(b);
+            order.Add(b);
             MezzorellaSticks sticks = new MezzorellaSticks();
-            order.AddItem(sticks);
+            order.Add(sticks);
             JurassicJava java = new JurassicJava();
-            order.AddItem(java);
+            order.Add(java);
 
             IOrderItem[] items = { b, sticks, java };
             
@@ -32,11 +32,11 @@ namespace DinoDiner.MenuTest
         {
             Order order = new Order();
             Brontowurst b = new Brontowurst();
-            order.AddItem(b);
+            order.Add(b);
             MezzorellaSticks sticks = new MezzorellaSticks();
-            order.AddItem(sticks);
+            order.Add(sticks);
             JurassicJava java = new JurassicJava();
-            order.AddItem(java);
+            order.Add(java);
 
             double cost = 0;
             cost += b.Price;
@@ -50,11 +50,11 @@ namespace DinoDiner.MenuTest
         {
             Order order = new Order();
             Brontowurst b = new Brontowurst();
-            order.AddItem(b);
+            order.Add(b);
             MezzorellaSticks sticks = new MezzorellaSticks();
-            order.AddItem(sticks);
+            order.Add(sticks);
             JurassicJava java = new JurassicJava();
-            order.AddItem(java);
+            order.Add(java);
 
             Assert.Equal(.10, order.SalesTaxRate);
         }
@@ -64,11 +64,11 @@ namespace DinoDiner.MenuTest
         {
             Order order = new Order();
             Brontowurst b = new Brontowurst();
-            order.AddItem(b);
+            order.Add(b);
             MezzorellaSticks sticks = new MezzorellaSticks();
-            order.AddItem(sticks);
+            order.Add(sticks);
             JurassicJava java = new JurassicJava();
-            order.AddItem(java);
+            order.Add(java);
 
             double cost = order.SubtotalCost;
             double stc = cost * order.SalesTaxRate;
@@ -81,11 +81,11 @@ namespace DinoDiner.MenuTest
         {
             Order order = new Order();
             Brontowurst b = new Brontowurst();
-            order.AddItem(b);
+            order.Add(b);
             MezzorellaSticks sticks = new MezzorellaSticks();
-            order.AddItem(sticks);
+            order.Add(sticks);
             JurassicJava java = new JurassicJava();
-            order.AddItem(java);
+            order.Add(java);
 
             double total = order.SalesTaxCost + order.SubtotalCost;
 
@@ -98,7 +98,7 @@ namespace DinoDiner.MenuTest
             Order order = new Order();
             Brontowurst b = new Brontowurst();
             b.Price = -10.00;
-            order.AddItem(b);
+            order.Add(b);
 
             Assert.Equal(0, order.SubtotalCost);
         }

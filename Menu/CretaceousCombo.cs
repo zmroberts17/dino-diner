@@ -20,14 +20,52 @@ namespace DinoDiner.Menu
         public Entree Entree { get; set; }
 
         /// <summary>
-        /// Gets and sets the side
+        /// The side of the combo
         /// </summary>
-        public Side Side { get; set; } = new Fryceritops();
+        private Side side = new Fryceritops();
+
+        /// <summary>
+        /// Gets and sets side
+        /// </summary>
+        public Side Side
+        {
+            get
+            {
+                return side;
+            }
+            set
+            {
+                side = value;
+                side.PropertyChanged += OnItemPropertyChanged;
+                NotifyOfPropertyChanged("Description");
+                NotifyOfPropertyChanged("Special");
+                NotifyOfPropertyChanged("Price");
+            }
+        }
+
+        /// <summary>
+        /// The drink of the combo
+        /// </summary>
+        private Drink drink = new Sodasaurus();
 
         /// <summary>
         /// Gets and sets the drink
         /// </summary>
-        public Drink Drink { get; set; } = new Sodasaurus();
+        public Drink Drink
+        {
+            get
+            {
+                return drink;
+            }
+            set
+            {
+                drink = value;
+                drink.PropertyChanged += OnItemPropertyChanged;
+                NotifyOfPropertyChanged("Description");
+                NotifyOfPropertyChanged("Special");
+                NotifyOfPropertyChanged("Price");
+            }
+        }
 
         /// <summary>
         /// Gets and sets the toy
@@ -41,13 +79,7 @@ namespace DinoDiner.Menu
         {
             get
             {
-                StringBuilder sb = new StringBuilder();
-                sb.Append(Entree.ToString());
-                sb.Append(Environment.NewLine);
-                sb.Append(Side.ToString());
-                sb.Append(Environment.NewLine);
-                sb.Append(Drink.ToString());
-                return sb.ToString();
+                return this.ToString();
             }
         }
 
@@ -59,7 +91,7 @@ namespace DinoDiner.Menu
             get
             {
                 List<string> special = new List<string>();
-                special.AddRange((IEnumerable<string>)Entree.Special);
+                special.AddRange(Entree.Special);
                 special.Add(Side.Description);
                 special.AddRange(Side.Special);
                 special.Add(Drink.Description);
@@ -114,11 +146,20 @@ namespace DinoDiner.Menu
 
         public Size Size
         {
+            get
+            {
+                return size;
+            }
             set
             {
                 size = value;
                 Drink.Size = value;
                 Side.Size = value;
+                NotifyOfPropertyChanged("Size");
+                NotifyOfPropertyChanged("Price");
+                NotifyOfPropertyChanged("Calories");
+                NotifyOfPropertyChanged("Description");
+                NotifyOfPropertyChanged("Special");
             }
         }
 
@@ -130,6 +171,23 @@ namespace DinoDiner.Menu
         {
             this.Entree = entree;
             this.Toy = "...";
+
+            Entree.PropertyChanged += OnItemPropertyChanged;
+            Drink.PropertyChanged += OnItemPropertyChanged;
+            Side.PropertyChanged += OnItemPropertyChanged;
+        }
+
+        /// <summary>
+        /// Button Clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Special"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
         }
 
         /// <summary>

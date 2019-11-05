@@ -26,28 +26,11 @@ namespace PointOfSale
     public partial class EntreeSelection : Page
     {
         /// <summary>
-        /// This is the previous page
-        /// </summary>
-        private Page previousPage;
-
-        /// <summary>
         /// Constructor
         /// </summary>
         public EntreeSelection()
         {
             InitializeComponent();
-            DataContext = null;
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="page">Previous page</param>
-        public EntreeSelection(Page page)
-        {
-            InitializeComponent();
-            DataContext = null;
-            previousPage = page;
         }
 
         /// <summary>
@@ -57,7 +40,6 @@ namespace PointOfSale
         public EntreeSelection(Entree entree)
         {
             InitializeComponent();
-            DataContext = entree;
         }
 
         /// <summary>
@@ -68,14 +50,8 @@ namespace PointOfSale
         public void SelectBrontowurst(object sender, RoutedEventArgs e)
         {
             SelectEntree(new Brontowurst());
-            brontowurstButton.Background = Brushes.LightGreen;
 
-            nuggetsButton.Background = Brushes.Gold;
-            pbjButton.Background = Brushes.Gold;
-            wingsButton.Background = Brushes.Gold;
-            steakButton.Background = Brushes.Gold;
-            trexButton.Background = Brushes.Gold;
-            wrapButton.Background = Brushes.Gold;
+            NavigationService.Navigate(new CustomizeBrontowurst());
         }
 
         /// <summary>
@@ -86,14 +62,8 @@ namespace PointOfSale
         public void SelectDinoNuggets(object sender, RoutedEventArgs e)
         {
             SelectEntree(new DinoNuggets());
-            nuggetsButton.Background = Brushes.LightGreen;
 
-            brontowurstButton.Background = Brushes.Gold;
-            pbjButton.Background = Brushes.Gold;
-            wingsButton.Background = Brushes.Gold;
-            steakButton.Background = Brushes.Gold;
-            trexButton.Background = Brushes.Gold;
-            wrapButton.Background = Brushes.Gold;
+            NavigationService.Navigate(new CustomizeDinoNuggets());
         }
 
         /// <summary>
@@ -104,14 +74,8 @@ namespace PointOfSale
         public void SelectPrehistoricPBJ(object sender, RoutedEventArgs e)
         {
             SelectEntree(new PrehistoricPBJ());
-            pbjButton.Background = Brushes.LightGreen;
 
-            nuggetsButton.Background = Brushes.Gold;
-            brontowurstButton.Background = Brushes.Gold;
-            wingsButton.Background = Brushes.Gold;
-            steakButton.Background = Brushes.Gold;
-            trexButton.Background = Brushes.Gold;
-            wrapButton.Background = Brushes.Gold;
+            NavigationService.Navigate(new CustomizePrehistoricPBJ());
         }
 
         /// <summary>
@@ -122,14 +86,6 @@ namespace PointOfSale
         public void SelectPterodactylWings(object sender, RoutedEventArgs e)
         {
             SelectEntree(new PterodactylWings());
-            wingsButton.Background = Brushes.LightGreen;
-
-            nuggetsButton.Background = Brushes.Gold;
-            pbjButton.Background = Brushes.Gold;
-            brontowurstButton.Background = Brushes.Gold;
-            steakButton.Background = Brushes.Gold;
-            trexButton.Background = Brushes.Gold;
-            wrapButton.Background = Brushes.Gold;
         }
 
         /// <summary>
@@ -140,14 +96,8 @@ namespace PointOfSale
         public void SelectSteakosaurus(object sender, RoutedEventArgs e)
         {
             SelectEntree(new SteakosaurusBurger());
-            steakButton.Background = Brushes.LightGreen;
 
-            nuggetsButton.Background = Brushes.Gold;
-            pbjButton.Background = Brushes.Gold;
-            wingsButton.Background = Brushes.Gold;
-            brontowurstButton.Background = Brushes.Gold;
-            trexButton.Background = Brushes.Gold;
-            wrapButton.Background = Brushes.Gold;
+            NavigationService.Navigate(new CustomizeSteakosaurus());
         }
 
         /// <summary>
@@ -158,14 +108,8 @@ namespace PointOfSale
         public void SelectTRexKingBurger(object sender, RoutedEventArgs e)
         {
             SelectEntree(new TRexKingBurger());
-            trexButton.Background = Brushes.LightGreen;
 
-            nuggetsButton.Background = Brushes.Gold;
-            pbjButton.Background = Brushes.Gold;
-            wingsButton.Background = Brushes.Gold;
-            steakButton.Background = Brushes.Gold;
-            brontowurstButton.Background = Brushes.Gold;
-            wrapButton.Background = Brushes.Gold;
+            NavigationService.Navigate(new CustomizeTRexKingBurger());
         }
 
         /// <summary>
@@ -176,14 +120,8 @@ namespace PointOfSale
         public void SelectVelociWrap(object sender, RoutedEventArgs e)
         {
             SelectEntree(new VelociWrap());
-            wrapButton.Background = Brushes.LightGreen;
 
-            nuggetsButton.Background = Brushes.Gold;
-            pbjButton.Background = Brushes.Gold;
-            wingsButton.Background = Brushes.Gold;
-            steakButton.Background = Brushes.Gold;
-            trexButton.Background = Brushes.Gold;
-            brontowurstButton.Background = Brushes.Gold;
+            NavigationService.Navigate(new CustomizeVelociWrap());
         }
 
         /// <summary>
@@ -195,9 +133,8 @@ namespace PointOfSale
         {
             if (DataContext is Order order)
             {
-                order.Items.Add(entree);
+                order.Add(entree);
                 CollectionViewSource.GetDefaultView(order.Items).MoveCurrentToLast();
-                NavigationService.Navigate(new MenuCategorySelection());
             }
         }
 
@@ -208,7 +145,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         public void DoneButtonClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
     }
 }

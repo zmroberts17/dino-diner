@@ -24,7 +24,7 @@ namespace PointOfSale
         public MainWindow()
         {
             InitializeComponent();
-            Order order = DataContext as Order;
+            OrderControl.NavigationService = OrderUI.NavigationService;
         }
 
         public void PassOnDataContext()

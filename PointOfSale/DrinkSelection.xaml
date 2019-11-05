@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Style="{StaticResource MyButton}" FontSize="28" Click="SodasaurusButtonClicked" Background="LightGreen" Name="sodasaurusButton" Grid.Row="1" Grid.Column="0" Content="Sodasaurus" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="60" Grid.ColumnSpan="4"/>
+        <Button Style="{StaticResource MyButton}" FontSize="28" Click="SodasaurusButtonClicked" Background="Gold" Name="sodasaurusButton" Grid.Row="1" Grid.Column="0" Content="Sodasaurus" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="60" Grid.ColumnSpan="4"/>
         <Button Style="{StaticResource MyButton}" FontSize="28" Click="TyrannoteaButtonClicked" Background="Gold" Name="tyrannoteaButton" Grid.Row="2" Content="Tyrannotea" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="60" Grid.ColumnSpan="4"/>
         <Button Style="{StaticResource MyButton}" FontSize="28" Click="JurassicJavaButtonClicked" Background="Gold" Name="jurassicJavaButton" Grid.Row="3" Grid.Column="0" Content="Jurassic Java" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="60" Grid.ColumnSpan="4"/>
         <Button Style="{StaticResource MyButton}" FontSize="28" Click="WaterButtonClicked" Background="Gold" Name="waterButton" Grid.Row="4" Content="Water" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Height="60" Grid.ColumnSpan="4"/>

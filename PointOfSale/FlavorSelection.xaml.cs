@@ -25,15 +25,9 @@ namespace PointOfSale
     /// </summary>
     public partial class FlavorSelection : Page
     {
-        /// <summary>
-        /// The previous page
-        /// </summary>
-        private Page previousPage;
-
-        public FlavorSelection(Page soda)
+        public FlavorSelection()
         {
             InitializeComponent();
-            previousPage = soda;
         }
 
         /// <summary>
@@ -48,6 +42,13 @@ namespace PointOfSale
                 {
                     soda.Flavor = flavor;
                 }
+                if (CollectionViewSource.GetDefaultView(order.Items).CurrentItem is CretaceousCombo combo)
+                {
+                    if (combo.Drink is Sodasaurus s)
+                    {
+                        s.Flavor = flavor;
+                    }
+                }
             }
         }
 
@@ -59,16 +60,7 @@ namespace PointOfSale
         public void CherryClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.Cherry);
-            cherryButton.Background = Brushes.LightGreen;
-
-            chocolateButton.Background = Brushes.Gold;
-            colaButton.Background = Brushes.Gold;
-            limeButton.Background = Brushes.Gold;
-            orangeButton.Background = Brushes.Gold;
-            rootBeerButton.Background = Brushes.Gold;
-            vanillaButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
 
         /// <summary>
@@ -79,16 +71,7 @@ namespace PointOfSale
         public void ChocolateClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.Chocolate);
-            chocolateButton.Background = Brushes.LightGreen;
-
-            cherryButton.Background = Brushes.Gold;
-            colaButton.Background = Brushes.Gold;
-            limeButton.Background = Brushes.Gold;
-            orangeButton.Background = Brushes.Gold;
-            rootBeerButton.Background = Brushes.Gold;
-            vanillaButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
 
         /// <summary>
@@ -99,16 +82,7 @@ namespace PointOfSale
         public void ColaClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.Cola);
-            colaButton.Background = Brushes.LightGreen;
-
-            chocolateButton.Background = Brushes.Gold;
-            cherryButton.Background = Brushes.Gold;
-            limeButton.Background = Brushes.Gold;
-            orangeButton.Background = Brushes.Gold;
-            rootBeerButton.Background = Brushes.Gold;
-            vanillaButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
 
         /// <summary>
@@ -119,16 +93,7 @@ namespace PointOfSale
         public void LimeClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.Lime);
-            limeButton.Background = Brushes.LightGreen;
-
-            chocolateButton.Background = Brushes.Gold;
-            colaButton.Background = Brushes.Gold;
-            cherryButton.Background = Brushes.Gold;
-            orangeButton.Background = Brushes.Gold;
-            rootBeerButton.Background = Brushes.Gold;
-            vanillaButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
 
         /// <summary>
@@ -139,16 +104,7 @@ namespace PointOfSale
         public void OrangeClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.Orange);
-            orangeButton.Background = Brushes.LightGreen;
-
-            chocolateButton.Background = Brushes.Gold;
-            colaButton.Background = Brushes.Gold;
-            limeButton.Background = Brushes.Gold;
-            cherryButton.Background = Brushes.Gold;
-            rootBeerButton.Background = Brushes.Gold;
-            vanillaButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
 
         /// <summary>
@@ -159,16 +115,7 @@ namespace PointOfSale
         public void RootBeerClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.RootBeer);
-            rootBeerButton.Background = Brushes.LightGreen;
-
-            chocolateButton.Background = Brushes.Gold;
-            colaButton.Background = Brushes.Gold;
-            limeButton.Background = Brushes.Gold;
-            orangeButton.Background = Brushes.Gold;
-            cherryButton.Background = Brushes.Gold;
-            vanillaButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
 
         /// <summary>
@@ -179,16 +126,7 @@ namespace PointOfSale
         public void VanillaClick(object sender, RoutedEventArgs e)
         {
             SelectFlavor(SodasaurusFlavor.Vanilla);
-            vanillaButton.Background = Brushes.LightGreen;
-
-            chocolateButton.Background = Brushes.Gold;
-            colaButton.Background = Brushes.Gold;
-            limeButton.Background = Brushes.Gold;
-            orangeButton.Background = Brushes.Gold;
-            rootBeerButton.Background = Brushes.Gold;
-            cherryButton.Background = Brushes.Gold;
-
-            NavigationService.Navigate(previousPage);
+            NavigationService.GoBack();
         }
     }
 }

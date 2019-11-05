@@ -71,6 +71,22 @@ namespace DinoDiner.Menu
         }
 
         /// <summary>
+        /// This method removes a nugget from the order.
+        /// </summary>
+        public void RemoveNugget()
+        {
+            if (nuggets > 6)
+            {
+                this.Price -= .25;
+                this.nuggets -= 1;
+                this.Calories -= 59;
+                NotifyOfPropertyChanged("Price");
+                NotifyOfPropertyChanged("Calories");
+                NotifyOfPropertyChanged("Special");
+            }
+        }
+
+        /// <summary>
         /// This method returns the string that refers to the menu item.
         /// </summary>
         /// <returns>The string that refers to the menu item</returns>
