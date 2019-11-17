@@ -12,3 +12,27 @@ body {
     padding-right: 15px;
 }
 
+#bannerimage {
+    background-image: url('../../../images/DinoDiner-24.png');
+    width: 1000px;
+    height: 1000px;
+    background-position: center;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #fff;
+    font-family: Arial;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: green;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.menu-item {
+    
+}

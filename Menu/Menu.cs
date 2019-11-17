@@ -73,7 +73,13 @@ namespace DinoDiner.Menu
             get
             {
                 List<Object> items = new List<Object>();
+                items.Add(new CretaceousCombo(new Brontowurst()));
+                items.Add(new CretaceousCombo(new DinoNuggets()));
+                items.Add(new CretaceousCombo(new PrehistoricPBJ()));
+                items.Add(new CretaceousCombo(new PterodactylWings()));
+                items.Add(new CretaceousCombo(new SteakosaurusBurger()));
                 items.Add(new CretaceousCombo(new TRexKingBurger()));
+                items.Add(new CretaceousCombo(new VelociWrap()));
                 return items;
             }
         }
