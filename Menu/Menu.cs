@@ -4,7 +4,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Collections;
+using System.Globalization;
+using System.Reflection;
 
 namespace DinoDiner.Menu
 {
@@ -13,24 +17,46 @@ namespace DinoDiner.Menu
     /// </summary>
     public class Menu
     {
-        public List<Object> AvailableMenuItems
+        private List<string> possibleIngredients { get; set; }
+
+        public List<string> PossibleIngredients
         {
             get
             {
-                List<Object> items = new List<Object>();
+                List<string> possible = new List<string>();
+                Menu menu = new Menu();
+                foreach (IMenuItem item in menu.AvailableMenuItems)
+                {
+                    foreach (string ingredient in item.Ingredients)
+                    {
+                        if (!possible.Contains(ingredient))
+                        {
+                            possible.Add(ingredient);
+                        }
+                    }
+                }
+                return possible;
+            }
+        }
+        
+        public List<IMenuItem> AvailableMenuItems
+        {
+            get
+            {
+                List<IMenuItem> items = new List<IMenuItem>();
+                items.AddRange(AvailableCombos);
                 items.AddRange(AvailableEntrees);
                 items.AddRange(AvailableSides);
                 items.AddRange(AvailableDrinks);
-                items.AddRange(AvailableCombos);
                 return items;
             }
         }
 
-        public List<Object> AvailableEntrees
+        public List<IMenuItem> AvailableEntrees
         {
             get 
             {
-                List<Object> items = new List<Object>();
+                List<IMenuItem> items = new List<IMenuItem>();
                 items.Add(new Brontowurst());
                 items.Add(new DinoNuggets());
                 items.Add(new PrehistoricPBJ());
@@ -42,11 +68,11 @@ namespace DinoDiner.Menu
             }
         }
 
-        public List<Object> AvailableSides
+        public List<IMenuItem> AvailableSides
         {
             get
             {
-                List<Object> items = new List<Object>();
+                List<IMenuItem> items = new List<IMenuItem>();
                 items.Add(new Fryceritops());
                 items.Add(new MeteorMacAndCheese());
                 items.Add(new MezzorellaSticks());
@@ -55,11 +81,11 @@ namespace DinoDiner.Menu
             }
         }
 
-        public List<Object> AvailableDrinks
+        public List<IMenuItem> AvailableDrinks
         {
             get
             {
-                List<Object> items = new List<Object>();
+                List<IMenuItem> items = new List<IMenuItem>();
                 items.Add(new JurassicJava());
                 items.Add(new Sodasaurus());
                 items.Add(new Tyrannotea());
@@ -68,11 +94,11 @@ namespace DinoDiner.Menu
             }
         }
 
-        public List<Object> AvailableCombos
+        public List<IMenuItem> AvailableCombos
         {
             get
             {
-                List<Object> items = new List<Object>();
+                List<IMenuItem> items = new List<IMenuItem>();
                 items.Add(new CretaceousCombo(new Brontowurst()));
                 items.Add(new CretaceousCombo(new DinoNuggets()));
                 items.Add(new CretaceousCombo(new PrehistoricPBJ()));
@@ -136,6 +162,106 @@ namespace DinoDiner.Menu
             CretaceousCombo cc7 = new CretaceousCombo(new VelociWrap());
             sb.Append(cc7.ToString() + "\n");
             return sb.ToString();
+        }
+
+        public List<IMenuItem> FilterByIMenuItem(List<IMenuItem> items, List<string> checkedBoxes)
+        {
+            List<IMenuItem> qualified = new List<IMenuItem>();
+            foreach (string checkBox in checkedBoxes)
+            {
+                if (checkBox.Equals("Combo"))
+                {
+                    foreach (IMenuItem item in items)
+                    {
+                        if (item is CretaceousCombo && !qualified.Contains(item))
+                        {
+                            qualified.Add(item);
+                        }
+                    }
+                }
+                else if (checkBox.Equals("Entree"))
+                {
+                    foreach (IMenuItem item in items)
+                    {
+                        if (item is Entree && !qualified.Contains(item))
+                        {
+                            qualified.Add(item);
+                        }
+                    }
+                }
+                else if (checkBox.Equals("Side"))
+                {
+                    foreach (IMenuItem item in items)
+                    {
+                        if (item is Side && !qualified.Contains(item))
+                        {
+                            qualified.Add(item);
+                        }
+                    }
+                }
+                else if (checkBox.Equals("Drink"))
+                {
+                    foreach (IMenuItem item in items)
+                    {
+                        if (item is Drink && !qualified.Contains(item))
+                        {
+                            qualified.Add(item);
+                        }
+                    }
+                }
+            }
+
+            return qualified;
+        }
+
+        public List<IMenuItem> Search(List<IMenuItem> items, string search)
+        {
+            List<IMenuItem> qualified = new List<IMenuItem>();
+            foreach (IMenuItem item in items)
+            {
+                if (item.ToString().ToLower().Contains(search.ToLower()))
+                {
+                    qualified.Add(item);
+                }
+            }
+            return qualified;
+        }
+
+        public List<IMenuItem> FilterByPrice(List<IMenuItem> items, double? minPrice, double? maxPrice)
+        {
+            List<IMenuItem> qualified = new List<IMenuItem>();
+            foreach (IMenuItem item in items)
+            {
+                if (item.Price >= minPrice && item.Price <= maxPrice)
+                {
+                    qualified.Add(item);
+                }
+            }
+            return qualified;
+        }
+
+        public List<IMenuItem> FilterByIngredients(List<IMenuItem> items, List<string> excludedIngredients)
+        {
+            List<IMenuItem> qualified = new List<IMenuItem>();
+            foreach (IMenuItem item in items)
+            {
+                bool cleared = true;
+                foreach (string itemIngredient in item.Ingredients)
+                {
+                    foreach (string excludedIngredient in excludedIngredients)
+                    {
+                        if (itemIngredient.Equals(excludedIngredient))
+                        {
+                            cleared = false;
+                        }
+                    }
+                }
+                if (cleared)
+                {
+                    qualified.Add(item);
+                }
+            }
+            return qualified;
         }
     }
 }

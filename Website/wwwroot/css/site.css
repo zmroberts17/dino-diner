@@ -3,6 +3,8 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 /* Wrapping element */
@@ -35,4 +37,32 @@ body {
 
 .menu-item {
     
+}
+
+form {
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-width: 300px;
+    text-align: right;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+form > h4 {
+    text-align: left;
+}
+
+form > label {
+    text-align: left;
+}
+
+#search {
+    padding-bottom: 5px;
 }

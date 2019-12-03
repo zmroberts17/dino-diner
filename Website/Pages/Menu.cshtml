@@ -1,6 +1,4 @@
-﻿
-
-@page
+﻿@page
 @model Website.Pages.MenuModel
 @{
     ViewData["Title"] = "Menu";
@@ -8,123 +6,142 @@
 
 @using DinoDiner.Menu;
 
-<h1>Menu</h1>
+    <div class="container">
 
-<h2>Combos</h2>
+        <div class="items">
+            <h1>Menu</h1>
 
-@for (int i = 0; i < Model.Menu.AvailableCombos.Count; i++)
-{
-    <div class="menu-item">
+            @for (int i = 0; i < Model.items.Count; i++)
+            {
+                <div class="menu-item">
+                    @if (Model.items[i] is CretaceousCombo combo)
+                    {
+                        if (Model.menuCategory.Contains("Combo") && !Model.c && Model.items[i] is CretaceousCombo)
+                        {
+                            Model.c = true;
+                            <h2>Combos</h2>
+                        }
+                        <h3>@combo.ToString()</h3>
+                        <ul>
+                            <p>Price: @combo.Price</p>
+                            <p>Calories: @combo.Calories</p>
 
-        @if (Model.Menu.AvailableCombos[i] is CretaceousCombo combo)
-        {
-            <h3>@combo.ToString()</h3>
-            <ul>
-                <p>Price: @combo.Price</p>
-                <p>Calories: @combo.Calories</p>
+                            <b>@combo.Entree.ToString()</b>
+                            <p>&emsp;&ensp;Ingredients: </p>
 
-                <b>@combo.Entree.ToString()</b>
-                <p>&emsp;&ensp;Ingredients: </p>
-                @for (int j = 0; j < combo.Entree.Ingredients.Count; j++)
-                {
-                    <ul>
-                        <li>@combo.Entree.Ingredients[j]</li>
-                    </ul>
-                }
+                            @for (int j = 0; j < combo.Entree.Ingredients.Count; j++)
+                            {
+                                <ul>
+                                    <li>@combo.Entree.Ingredients[j]</li>
+                                </ul>
+                            }
 
-                <b>@combo.Side.ToString()</b>
-                <p>&emsp;&ensp;Ingredients: </p>
-                @for (int j = 0; j < combo.Side.Ingredients.Count; j++)
-                {
-                    <ul>
-                        <li>@combo.Side.Ingredients[j]</li>
-                    </ul>
-                }
+                            <b>@combo.Side.ToString()</b>
+                            <p>&emsp;&ensp;Ingredients: </p>
+                            @for (int j = 0; j < combo.Side.Ingredients.Count; j++)
+                            {
+                                <ul>
+                                    <li>@combo.Side.Ingredients[j]</li>
+                                </ul>
+                            }
 
-                <b>@combo.Drink.ToString()</b>
-                <p>&emsp;&ensp;Ingredients: </p>
-                @for (int j = 0; j < combo.Drink.Ingredients.Count; j++)
-                {
-                    <ul>
-                        <li>@combo.Drink.Ingredients[j]</li>
-                    </ul>
-                }
-            </ul>
-        }
+                            <b>@combo.Drink.ToString()</b>
+                            <p>&emsp;&ensp;Ingredients: </p>
+                            @for (int j = 0; j < combo.Drink.Ingredients.Count; j++)
+                            {
+                                <ul>
+                                    <li>@combo.Drink.Ingredients[j]</li>
+                                </ul>
+                            }
+
+                        </ul>
+                    }
+                    else
+                    {
+                        if (!Model.e && Model.menuCategory.Contains("Entree") && Model.items[i] is Entree)
+                        {
+                            Model.e = true;
+                            <h2>Entrees</h2>
+                        }
+                        else if (!Model.s && Model.menuCategory.Contains("Side") && Model.items[i] is Side)
+                        {
+                            Model.s = true;
+                            <h2>Sides</h2>
+                        }
+                        else if (!Model.d && Model.menuCategory.Contains("Drink") && Model.items[i] is Drink)
+                        {
+                            Model.d = true;
+                            <h2>Drinks</h2>
+                        }
+                        IMenuItem item = Model.items[i];
+                        <b>@item.ToString()</b>
+                        <ul>
+                            <p>Price: @item.Price</p>
+                            <p>Calories: @item.Calories</p>
+
+                            <p>Ingredients:</p>
+                            @for (int j = 0; j < item.Ingredients.Count; j++)
+                            {
+                                <ul>
+                                    <li>@item.Ingredients[j]</li>
+                                </ul>
+                            }
+                        </ul>
+                    }
+                </div>
+            }
+        </div>
+
+        <form id="search-and-filter-form" method="post">
+            <h4>Search</h4>
+
+            <input type="text" name="search" id="search" value="@Model.search" />
+
+            <input type="submit" name="filter" id="filter" value="Search and Filter" />
+
+            <h4>Menu Category</h4>
+
+            <label>
+                <input type="checkbox" class="menu-category" name="menuCategory" value="Combo" checked="@Model.menuCategory.Contains("Combo")" />
+                Combo
+            </label>
+
+            <label>
+                <input type="checkbox" class="menu-category" name="menuCategory" value="Entree" checked="@Model.menuCategory.Contains("Entree")" />
+                Entree
+            </label>
+
+            <label>
+                <input type="checkbox" class="menu-category" name="menuCategory" value="Side" checked="@Model.menuCategory.Contains("Side")" />
+                Side
+            </label>
+
+            <label>
+                <input type="checkbox" class="menu-category" name="menuCategory" value="Drink" checked="@Model.menuCategory.Contains("Drink")" />
+                Drink
+            </label>
+
+            <h4>Price</h4>
+
+            <label>
+                Minimum Price:
+                <input type="number" id="minimum-price" name="minimumPrice" value="@Model.minimumPrice" />
+            </label>
+
+            <label>
+                Maximum Price:
+                <input type="number" id="maximum-price" name="maximumPrice" value="@Model.maximumPrice"/>
+            </label>
+
+            <h4>Excluding Ingredients</h4>
+
+            @for (int i = 0; i < Model.Menu.PossibleIngredients.Count; i++)
+            {
+                <label>
+                    <input type="checkbox" class="exclude-ingredients" name="excludedIngredients" value="@Model.Menu.PossibleIngredients[i]" checked="@Model.excludedIngredients.Contains(Model.Menu.PossibleIngredients[i])" />
+                    @Model.Menu.PossibleIngredients[i]
+                </label>
+            }
+        </form>
+
     </div>
-}
-
-<h2>Entrees</h2>
-
-@for (int i = 0; i < Model.Menu.AvailableEntrees.Count; i++)
-{
-    <div class="menu-item">
-
-        @if (Model.Menu.AvailableEntrees[i] is Entree entree)
-        {
-            <b>@entree.ToString()</b>
-            <ul>
-                <p>Price: @entree.Price</p>
-                <p>Calories: @entree.Calories</p>
-
-                <p>Ingredients:</p>
-                @for (int j = 0; j < entree.Ingredients.Count; j++)
-                {
-                    <ul>
-                        <li>@entree.Ingredients[j]</li>
-                    </ul>
-                }
-            </ul>
-        }
-    </div>
-}
-
-<h2>Sides</h2>
-
-@for (int i = 0; i < Model.Menu.AvailableSides.Count; i++)
-{
-    <div class="menu-item">
-
-        @if (Model.Menu.AvailableSides[i] is Side side)
-        {
-            <b>@side.ToString()</b>
-            <ul>
-                <p>Price: @side.Price</p>
-                <p>Calories: @side.Calories</p>
-
-                <p>Ingredients:</p>
-                @for (int j = 0; j < side.Ingredients.Count; j++)
-                {
-                    <ul>
-                        <li>@side.Ingredients[j]</li>
-                    </ul>
-                }
-            </ul>
-        }
-    </div>
-}
-
-<h2>Drinks</h2>
-
-@for (int i = 0; i < Model.Menu.AvailableDrinks.Count; i++)
-{
-    <div class="menu-item">
-
-        @if (Model.Menu.AvailableDrinks[i] is Drink drink)
-        {
-            <b>@drink.ToString()</b>
-            <ul>
-                <p>Price: @drink.Price</p>
-                <p>Calories: @drink.Calories</p>
-
-                <p>Ingredients:</p>
-                @for (int j = 0; j < drink.Ingredients.Count; j++)
-                {
-                    <ul>
-                        <li>@drink.Ingredients[j]</li>
-                    </ul>
-                }
-            </ul>
-        }
-    </div>
-}
